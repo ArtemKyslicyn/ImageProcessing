@@ -11,6 +11,7 @@
 #import "DownloadImageViewController.h"
 #import "ImagesFileManager.h"
 #import "ProcessImageTableViewCell.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 const int kAddImageActionSheet = 1;
 const int kImageOperationActionSheet = 2;
@@ -220,14 +221,65 @@ const int kImageOperationActionSheet = 2;
 
 
 #pragma mark Alert view delegates
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-   
-//    if ([segue.identifier isEqualToString:@"embedContainer"]) {
-//        self.containerViewController = segue.destinationViewController;
-//    }
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    switch (buttonIndex) {
+        case 0:
+            
+            break;
+        case 1:
+            
+            break;
+        case 2:
+            
+            break;
+            
+        default:
+            break;
+    }
+    
 }
 
+
+
+#pragma mark Operations
+
+
+-(void)saveToLibarayImage:(UIImage*)image{
+    
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    [library writeImageToSavedPhotosAlbum:image.CGImage orientation:(ALAssetOrientation)image.imageOrientation completionBlock:^(NSURL *assetURL, NSError *error )
+     {
+         NSLog(@"IMAGE SAVED TO PHOTO ALBUM");
+         [library assetForURL:assetURL resultBlock:^(ALAsset *asset )
+          {
+              NSLog(@"we have our ALAsset!");
+          }
+                 failureBlock:^(NSError *error )
+          {
+              NSLog(@"Error loading asset");
+          }];
+     }];
+    
+}
+
+-(void)procesAgainImage:(UIImage*)image{
+    
+    self.imageView.image = image;
+    
+}
+
+-(void)deleteImage{
+    
+}
+
+#pragma mark Segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    //    if ([segue.identifier isEqualToString:@"embedContainer"]) {
+    //        self.containerViewController = segue.destinationViewController;
+    //    }
+}
 
 @end

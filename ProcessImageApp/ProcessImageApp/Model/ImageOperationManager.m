@@ -1,19 +1,20 @@
 //
-//  Model.m
+//  ImageOperationManager.m
 //  ProcessImageApp
 //
 //  Created by Arcilite on 06.09.14.
 //  Copyright (c) 2014 Arcilite. All rights reserved.
 //
 
-#import "Model.h"
+#import "ImageOperationManager.h"
+
 
 static NSString * const kAKException             = @"You Can't create instance for singleton";
 static NSString * const kAKExceptionReason       = @"You Trying to call new for singleton";
 static NSString * const KRachebilityTestResource = @"www.google.com";
 
 
-@implementation Model
+@implementation ImageOperationManager
 
 static id _sharedInstance;
 
@@ -29,7 +30,7 @@ static id _sharedInstance;
 - (id)init
 {
     if (self = [super init]) {
-       
+        
         
     }
     return self;
@@ -59,6 +60,7 @@ static id _sharedInstance;
     
     return nil;
 }
+
 
 
 @end

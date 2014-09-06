@@ -26,7 +26,20 @@
     
     NSArray *filePathsArray = [[NSFileManager defaultManager] subpathsOfDirectoryAtPath:documentsDirectory  error:&error];
     
-    return filePathsArray;
+    NSMutableArray *jpegFiles = [NSMutableArray arrayWithCapacity: [filePathsArray count]];
+    NSString *filename;
+    
+    for (filename in filePathsArray){
+        
+        if ([filename pathExtension].length > 0 ){
+        NSString * fullFilePath = [documentsDirectory stringByAppendingPathComponent:filename];
+        [jpegFiles addObject:fullFilePath];
+            
+    }
+        
+    }
+    
+    return jpegFiles;
 }
 
 +(void)saveProcessedImage:(UIImage*)image{

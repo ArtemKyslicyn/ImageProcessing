@@ -10,4 +10,8 @@
 
 @interface ImageOperation : NSObject
 
+@property (nonatomic,assign) BOOL isProcessed ;
+
+@property (nonatomic,strong) NSString * filePath;
+
 @end

@@ -11,7 +11,9 @@
 @implementation Helper
 
 +(NSString *) timeStamp; {
-    return [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970] * 1000];
+    NSTimeInterval interval = [[NSDate date] timeIntervalSince1970] *1000;
+    NSInteger time = interval;
+    return [NSString stringWithFormat:@"%ld",(long)time];
 }
 
 @end

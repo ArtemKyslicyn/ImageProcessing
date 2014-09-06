@@ -8,6 +8,14 @@
 
 #import "ImageOperation.h"
 
-@implementation ImageOperation
+@interface ImageOperation()
+
+@property (nonatomic,assign) dispatch_queue_t myQueue ;
+
+@end
+
+@implementation ImageOperation{
+    
+}
 
 @end

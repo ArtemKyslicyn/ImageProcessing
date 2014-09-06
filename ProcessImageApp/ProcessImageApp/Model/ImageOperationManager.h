@@ -1,5 +1,5 @@
 //
-//  Model.h
+//  ImageOperationManager.h
 //  ProcessImageApp
 //
 //  Created by Arcilite on 06.09.14.
@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Model : NSObject
+@interface ImageOperationManager : NSObject
 
 @end

@@ -18,7 +18,7 @@ const int kImageOperationActionSheet = 2;
 
 @interface ImageProcessingViewController ()
 
-@property (nonatomic,strong) NSMutableArray * imagesArray;
+@property (nonatomic,strong) NSArray * imagesArray;
 @property (nonatomic,assign) NSInteger  selectedImageIndex;
 @property (nonatomic, weak) DownloadImageViewController *containerViewController;
 @end
@@ -65,27 +65,19 @@ const int kImageOperationActionSheet = 2;
     
     static NSString *cellIdentifier = @"cellIdentifier";
     
-   ProcessImageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    if (cell == nil)
-    {
-        cell = [[ProcessImageTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                       reuseIdentifier:cellIdentifier] ;
-    }
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    
-    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+  
+    ProcessImageTableViewCell *cell = [tableView
+                              dequeueReusableCellWithIdentifier:cellIdentifier
+                              forIndexPath:indexPath];
+
    
-    
     NSString * pathImage = [self.imagesArray objectAtIndex:indexPath.row];
-    NSString * fullPath = [documentsDirectory stringByAppendingPathComponent:pathImage];
     
-    cell.processedImageView.image = [UIImage imageWithContentsOfFile:fullPath];
-//    // Here we use the provided setImageWithURL: method to load the web image
-//    // Ensure you use a placeholder image otherwise cells will be initialized with no image
-//    [cell.imageView setImageWithURL:[NSURL URLWithString:@"http://example.com/image.jpg"]
-//                   placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    NSLog(@"%@",pathImage);
+    UIImage *img = [UIImage imageWithContentsOfFile:pathImage];
+   
+    cell.processedImageView.image = img;
+    
 
     return cell;
 }

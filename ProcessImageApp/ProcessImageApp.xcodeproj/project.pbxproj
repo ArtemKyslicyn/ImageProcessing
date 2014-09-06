@@ -27,8 +27,8 @@
 		6AB9201719BB170000B8E044 /* DownloadImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9201619BB170000B8E044 /* DownloadImageViewController.m */; };
 		6AB9201B19BB2BB800B8E044 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9201A19BB2BB800B8E044 /* Helper.m */; };
 		6AB9201E19BB2CF600B8E044 /* ImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9201D19BB2CF600B8E044 /* ImageOperation.m */; };
-		6AB9202519BB2DCC00B8E044 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9202419BB2DCC00B8E044 /* Model.m */; };
 		6ABE7D4F19BB38FF00FEA502 /* ProcessImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABE7D4E19BB38FF00FEA502 /* ProcessImageTableViewCell.m */; };
+		6ABE7D5219BB6B0200FEA502 /* ImageOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABE7D5119BB6B0200FEA502 /* ImageOperationManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,10 +73,10 @@
 		6AB9201A19BB2BB800B8E044 /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Helper.m; path = Helpers/Helper.m; sourceTree = "<group>"; };
 		6AB9201C19BB2CF600B8E044 /* ImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageOperation.h; path = Model/ModelObjects/ImageOperation.h; sourceTree = "<group>"; };
 		6AB9201D19BB2CF600B8E044 /* ImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageOperation.m; path = Model/ModelObjects/ImageOperation.m; sourceTree = "<group>"; };
-		6AB9202319BB2DCC00B8E044 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model.h; path = Model/Model.h; sourceTree = "<group>"; };
-		6AB9202419BB2DCC00B8E044 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model.m; path = Model/Model.m; sourceTree = "<group>"; };
 		6ABE7D4D19BB38FF00FEA502 /* ProcessImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProcessImageTableViewCell.h; path = Cells/ProcessImageTableViewCell.h; sourceTree = "<group>"; };
 		6ABE7D4E19BB38FF00FEA502 /* ProcessImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProcessImageTableViewCell.m; path = Cells/ProcessImageTableViewCell.m; sourceTree = "<group>"; };
+		6ABE7D5019BB6B0200FEA502 /* ImageOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageOperationManager.h; path = Model/ImageOperationManager.h; sourceTree = "<group>"; };
+		6ABE7D5119BB6B0200FEA502 /* ImageOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageOperationManager.m; path = Model/ImageOperationManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,8 +186,8 @@
 				6AB9200619BB0DB600B8E044 /* ImageDownloader.m */,
 				6AB9200819BB0F2B00B8E044 /* ImagesFileManager.h */,
 				6AB9200919BB0F2B00B8E044 /* ImagesFileManager.m */,
-				6AB9202319BB2DCC00B8E044 /* Model.h */,
-				6AB9202419BB2DCC00B8E044 /* Model.m */,
+				6ABE7D5019BB6B0200FEA502 /* ImageOperationManager.h */,
+				6ABE7D5119BB6B0200FEA502 /* ImageOperationManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -346,8 +346,8 @@
 				6A2D4B8519BA08F800C052E9 /* AppDelegate.m in Sources */,
 				6AB9201719BB170000B8E044 /* DownloadImageViewController.m in Sources */,
 				6AB9200A19BB0F2B00B8E044 /* ImagesFileManager.m in Sources */,
+				6ABE7D5219BB6B0200FEA502 /* ImageOperationManager.m in Sources */,
 				6A2D4B8119BA08F800C052E9 /* main.m in Sources */,
-				6AB9202519BB2DCC00B8E044 /* Model.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

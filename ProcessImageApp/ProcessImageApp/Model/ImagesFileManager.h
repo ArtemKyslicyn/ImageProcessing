@@ -6,14 +6,11 @@
 //  Copyright (c) 2014 Arcilite. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
 @interface ImagesFileManager : NSObject
 
-+(NSString*)saveProcessedImage:(UIImage*)image;
-
-+(NSArray*)loadProcessedImagesFilePathsFromDocuments;
-
-+(BOOL)removeProcessedImageByPath:(NSString*)path;
++ (NSString *)saveProcessedImage:(UIImage *)image;
++ (NSArray *)loadProcessedImagesFilePathsFromDocuments;
++ (BOOL)removeProcessedImageByPath:(NSString *)path;
 
 @end

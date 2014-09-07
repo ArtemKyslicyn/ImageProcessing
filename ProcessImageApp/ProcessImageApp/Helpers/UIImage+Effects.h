@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 Arcilite. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 
 @interface UIImage (Effects)
 
-- (UIImage*) rotateImageForDegree:(float)degree;
-- (UIImage *)invertedImage ;
+- (UIImage *)rotateImageForDegree:(float)degree;
+- (UIImage *)invertedImage;
 - (UIImage *)negativeImage;
--(UIImage *) horizontalMirror;
+- (UIImage *)horizontalMirror;
+
 @end

@@ -5,29 +5,31 @@
 //  Created by Arcilite on 06.09.14.
 //  Copyright (c) 2014 Arcilite. All rights reserved.
 //
+
 CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
+
 #import "UIImage+Effects.h"
+
 
 @implementation UIImage (Effects)
 
-
-- (UIImage*) rotateImageForDegree:(float)degrees{
-    
+- (UIImage *)rotateImageForDegree:(float)degrees
+{
     float newSide = MAX(self.size.width, self.size.height);
     CGSize size =  CGSizeMake(newSide, newSide);
     UIGraphicsBeginImageContext(size);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGContextTranslateCTM(ctx, newSide/2, newSide/2);
+    CGContextTranslateCTM(ctx, newSide / 2, newSide / 2);
     CGContextRotateCTM(ctx, DegreesToRadians(degrees));
-    CGContextDrawImage(UIGraphicsGetCurrentContext(),CGRectMake(-self.size.width/2,- self.size.height/2,size.width, size.height),self.CGImage);
+    CGContextDrawImage(UIGraphicsGetCurrentContext(), CGRectMake(-self.size.width / 2, -self.size.height / 2, size.width, size.height), self.CGImage);
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
 }
 
-- (UIImage *)invertedImage {
-    
-    CGRect rect = (CGRect){.size = self.size};
+- (UIImage *)invertedImage
+{
+    CGRect rect = (CGRect) {.size = self.size };
     
     UIGraphicsBeginImageContextWithOptions(rect.size, NO, self.scale);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
@@ -37,14 +39,13 @@ CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
     
     CGContextTranslateCTM(ctx, 0, rect.size.height);
     CGContextScaleCTM(ctx, 1.0, -1.0);
-   
+    
     CGContextClipToMask(ctx, rect, self.CGImage);
     CGContextSetFillColorWithColor(ctx, [UIColor whiteColor].CGColor);
     CGContextFillRect(ctx, rect);
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
-    
 }
 
 - (UIImage *)negativeImage
@@ -57,7 +58,7 @@ CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
     
     // Create a suitable RGB+alpha bitmap context in BGRA colour space
     CGColorSpaceRef colourSpace = CGColorSpaceCreateDeviceRGB();
-    unsigned char *memoryPool = (unsigned char *)calloc(width*height*4, 1);
+    unsigned char *memoryPool = (unsigned char *)calloc(width * height * 4, 1);
     CGContextRef context = CGBitmapContextCreate(memoryPool, width, height, 8, width * 4, colourSpace, kCGBitmapByteOrder32Big | kCGImageAlphaPremultipliedLast);
     CGColorSpaceRelease(colourSpace);
     
@@ -117,9 +118,9 @@ CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
     return returnImage;
 }
 
--(UIImage *) horizontalMirror {
- 
-    UIImage * flippedImage = [UIImage imageWithCGImage:self.CGImage scale:1.0 orientation:UIImageOrientationDownMirrored];
+- (UIImage *)horizontalMirror
+{
+    UIImage *flippedImage = [UIImage imageWithCGImage:self.CGImage scale:1.0 orientation:UIImageOrientationDownMirrored];
     
     CGImageRef inImage = self.CGImage;
     CGContextRef ctx = CGBitmapContextCreate(NULL,
@@ -130,7 +131,7 @@ CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
                                              CGImageGetColorSpace(inImage),
                                              CGImageGetBitmapInfo(inImage)
                                              );
-    CGRect cropRect = CGRectMake(flippedImage.size.width/2, 0, flippedImage.size.width/2, flippedImage.size.height);
+    CGRect cropRect = CGRectMake(flippedImage.size.width / 2, 0, flippedImage.size.width / 2, flippedImage.size.height);
     CGImageRef TheOtherHalf = CGImageCreateWithImageInRect(flippedImage.CGImage, cropRect);
     CGContextDrawImage(ctx, CGRectMake(0, 0, CGImageGetWidth(inImage), CGImageGetHeight(inImage)), inImage);
     

@@ -9,12 +9,14 @@
 #import "ImagesFileManager.h"
 #import "Helper.h"
 
- NSString * const kProcessedImagesFolder = @"/ProcessedImages";
+NSString * const kProcessedImagesFolder = @"/ProcessedImages";
+
 
 @implementation ImagesFileManager
 
-+(NSArray*)loadProcessedImagesFilePathsFromDocuments{
-    NSError * error;
++ (NSArray *)loadProcessedImagesFilePathsFromDocuments
+{
+    NSError *error;
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
@@ -24,26 +26,24 @@
     if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath])
         [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:&error];
     
-    NSArray *filePathsArray = [[NSFileManager defaultManager] subpathsOfDirectoryAtPath:documentsDirectory  error:&error];
+    NSArray *filePathsArray = [[NSFileManager defaultManager] subpathsOfDirectoryAtPath:documentsDirectory error:&error];
     
-    NSMutableArray *jpegFiles = [NSMutableArray arrayWithCapacity: [filePathsArray count]];
+    NSMutableArray *jpegFiles = [NSMutableArray arrayWithCapacity:[filePathsArray count]];
     NSString *filename;
     
-    for (filename in filePathsArray){
-        
-        if ([filename pathExtension].length > 0 ){
-        NSString * fullFilePath = [documentsDirectory stringByAppendingPathComponent:filename];
-        [jpegFiles addObject:fullFilePath];
-            
-    }
-        
+    for (filename in filePathsArray) {
+        if ([filename pathExtension].length > 0) {
+            NSString *fullFilePath = [documentsDirectory stringByAppendingPathComponent:filename];
+            [jpegFiles addObject:fullFilePath];
+        }
     }
     
     return jpegFiles;
 }
 
-+(NSString*)saveProcessedImage:(UIImage*)image{
-    NSError * error;
++ (NSString *)saveProcessedImage:(UIImage *)image
+{
+    NSError *error;
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
@@ -53,25 +53,23 @@
     if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath])
         [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:&error];
     
-    NSString * filename = [NSString stringWithFormat:@"%@.png",[Helper timeStamp]];
-    NSString * filePath = [dataPath stringByAppendingPathComponent:filename];
+    NSString *filename = [NSString stringWithFormat:@"%@.png", [Helper timeStamp]];
+    NSString *filePath = [dataPath stringByAppendingPathComponent:filename];
     
     [UIImagePNGRepresentation(image) writeToFile:filePath atomically:YES];
     return filePath;
-    
 }
 
-+(BOOL)removeProcessedImageByPath:(NSString*)path{
-    
-    NSError * error = nil;
++ (BOOL)removeProcessedImageByPath:(NSString *)path
+{
+    NSError *error = nil;
     BOOL success = [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
     
     if (!success) {
-        NSLog(@"Could not delete file -:%@ ",[error localizedDescription]);
+        NSLog(@"Could not delete file -:%@ ", [error localizedDescription]);
     }
     
     return success;
 }
-
 
 @end

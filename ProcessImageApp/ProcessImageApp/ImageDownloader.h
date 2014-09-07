@@ -6,8 +6,9 @@
 //  Copyright (c) 2014 Arcilite. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
 @interface ImageDownloader : NSObject
-@property (nonatomic,strong,readonly) NSMutableArray * imageDownloadOperationsArrray;
+
+@property (nonatomic, strong, readonly) NSMutableArray *imageDownloadOperationsArrray;
+
 @end

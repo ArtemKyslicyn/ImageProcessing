@@ -7,39 +7,37 @@
 //
 
 #import "DownloadOperation.h"
-@interface DownloadOperation()
 
-@property (nonatomic,retain) NSMutableData * receivedData;
+
+@interface DownloadOperation ()
+
+@property (nonatomic, strong) NSMutableData *receivedData;
 
 @end
-@implementation DownloadOperation{
+
+
+@implementation DownloadOperation {
     NSURLConnection *_theConnection;
 }
 
 
--(void)downloadByUrlString:(NSString*)urlString{
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]  cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+- (void)downloadByUrlString:(NSString *)urlString
+{
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]
+                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                          timeoutInterval:10.0];
     
-    _theConnection=[[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-    
+    _theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+
     if (_theConnection) {
-        
-        self.receivedData = [NSMutableData data] ;
-        
+        self.receivedData = [NSMutableData data];
     }
-
-
 }
 
-
--(void)start{
+- (void)start
+{
     [_theConnection start];
 }
-
-
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
     [_receivedData setLength:0];
@@ -49,36 +47,29 @@
     [_receivedData appendData:data];
 }
 
-
-
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection{
     
     
 }
 
-
-- (void)connection:(NSURLConnection *)connection didWriteData:(long long)bytesWritten totalBytesWritten:(long long)totalBytesWritten expectedTotalBytes:(long long) expectedTotalBytes{
-    NSLog(@" is %lld  from% lld",totalBytesWritten,expectedTotalBytes);
-    float progress = totalBytesWritten/expectedTotalBytes;
+- (void)connection:(NSURLConnection *)connection didWriteData:(long long)bytesWritten
+                                            totalBytesWritten:(long long)totalBytesWritten
+                                           expectedTotalBytes:(long long)expectedTotalBytes
+{
+    NSLog(@" is %lld  from% lld", totalBytesWritten, expectedTotalBytes);
+    float progress = totalBytesWritten / expectedTotalBytes;
     self.progressBlock(progress);
 }
 
-
-
-- (void)connectionDidFinishDownloading:(NSURLConnection *)connection destinationURL:(NSURL *) destinationURL{
-    
+- (void)connectionDidFinishDownloading:(NSURLConnection *)connection destinationURL:(NSURL *)destinationURL
+{
     
 }
-
-
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
- 
     NSLog(@"Connection failed! Error - %@",
           [error localizedDescription]);
 }
-
-
 
 @end

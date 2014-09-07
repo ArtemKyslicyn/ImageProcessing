@@ -6,24 +6,19 @@
 //  Copyright (c) 2014 Arcilite. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
-typedef void(^ProgressBlock)(float progress);
+typedef void (^ProgressBlock)(float progress);
+typedef void (^CompleteBlock)(UIImage *image);
+typedef id (^FailBlock)(NSError *error);
 
-typedef id (^FailBlock)(NSError * error);
-
-typedef void(^CompleteBlock)(UIImage * image);
 
 @interface DownloadOperation : NSObject
 
-@property (nonatomic,copy) ProgressBlock progressBlock ;
+@property (nonatomic, copy) ProgressBlock progressBlock;
+@property (nonatomic, copy) FailBlock failBlock;
+@property (nonatomic, copy) CompleteBlock completeBlock;
 
-@property (nonatomic,copy) FailBlock failBlock ;
-
-@property (nonatomic,copy) CompleteBlock completeBlock ;
-
--(void)downloadByUrlString:(NSString*)urlString;
-
--(void)start;
+- (void)downloadByUrlString:(NSString *)urlString;
+- (void)start;
 
 @end

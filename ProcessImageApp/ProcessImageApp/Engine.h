@@ -6,15 +6,14 @@
 //  Copyright (c) 2014 Arcilite. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "ImageOperationManager.h"
 #import "ImageDownloader.h"
 
 @interface Engine : NSObject
 
-@property (nonatomic,retain)  ImageOperationManager * operationsManager;
-@property (nonatomic,retain)  ImageDownloader       * downloadManager;
+@property (nonatomic, retain)  ImageOperationManager *operationsManager;
+@property (nonatomic, retain)  ImageDownloader *downloadManager;
 
-+ (Engine*)sharedManager;
++ (Engine *)sharedManager;
 
 @end

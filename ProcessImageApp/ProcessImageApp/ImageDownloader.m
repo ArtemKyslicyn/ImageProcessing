@@ -8,28 +8,28 @@
 
 #import "ImageDownloader.h"
 #import "DownloadOperation.h"
+
+
 @implementation ImageDownloader
 
-
--(void)addImageOperationForUrlString:(NSString*)url fail:(void (^)(NSError*))fail   complete:(void (^)(UIImage* image))complete progress:(void (^)(float progress))progressBlock{
-    if(!url) return;
-   
-    DownloadOperation * operation = [DownloadOperation new];
+- (void)addImageOperationForUrlString:(NSString *)url
+                                 fail:(void (^)(NSError *))fail
+                             complete:(void (^)(UIImage *image))complete
+                             progress:(void (^)(float progress))progressBlock
+{
+    if (!url) return;
     
+    DownloadOperation *operation = [DownloadOperation new];
     operation.completeBlock = complete;
-    
     
     [self.imageDownloadOperationsArrray addObject:operation];
     
-    operation.progressBlock = ^(float progress){
+    operation.progressBlock = ^(float progress) {
         progressBlock(progress);
-        // cell.progressView.progress = progress;
-    } ;
+            // cell.progressView.progress = progress;
+    };
     
     [operation start];
-    
-   
-
 }
 
 @end

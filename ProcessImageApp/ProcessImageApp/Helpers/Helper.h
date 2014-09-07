@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Arcilite. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
 @interface Helper : NSObject
 
-+(NSString *) timeStamp;
++ (NSString *)timeStamp;
 
-dispatch_source_t CreateDispatchTimer(uint64_t interval,
-                                      uint64_t leeway,
+dispatch_source_t CreateDispatchTimer(uint64_t         interval,
+                                      uint64_t         leeway,
                                       dispatch_queue_t queue,
                                       dispatch_block_t block);
+
 @end

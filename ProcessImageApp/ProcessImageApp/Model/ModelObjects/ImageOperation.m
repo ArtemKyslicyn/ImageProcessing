@@ -7,7 +7,7 @@
 //
 
 #import "ImageOperation.h"
-
+#import "Helper.h"
 @interface ImageOperation()
 
 @property (nonatomic,assign) dispatch_queue_t myQueue ;
@@ -42,26 +42,37 @@
        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
            UIImage * image = self.operation();
           
-           float periodTime = rand() % (25) + 5;
-           
-           dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
-           dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, periodTime * NSEC_PER_SEC, 1 * NSEC_PER_SEC);
-           
-           int timerFires = 0;
-           dispatch_source_set_event_handler(timer, ^{
-               float progress = (timerFires*5) /periodTime;
-               self.progress(progress);
-           });
-           
-          dispatch_resume(timer);
+         float periodTime = rand() % (25) + 5;
           
+           
+           
            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(periodTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                
                dispatch_async(dispatch_get_main_queue(), ^{
                    self.completeBlock(image);
+                   self.isProcessed = YES;
                });
                
           });
+           
+           __block int timerFires = 0;
+
+           
+           
+  
+           
+           dispatch_source_t aTimer = CreateDispatchTimer(30ull * NSEC_PER_SEC,
+                                                          1ull * NSEC_PER_SEC,
+                                                          dispatch_get_main_queue(),
+                                                          ^{
+                                                          
+                                                              timerFires++;
+                                                              float progress = (timerFires) /periodTime;
+                                                              dispatch_async(dispatch_get_main_queue(), ^{
+                                                                  self.progress(progress);
+                                                              });
+                                                          });
+           
           
           
            

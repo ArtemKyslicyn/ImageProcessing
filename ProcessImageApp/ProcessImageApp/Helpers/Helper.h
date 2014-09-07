@@ -12,4 +12,8 @@
 
 +(NSString *) timeStamp;
 
+dispatch_source_t CreateDispatchTimer(uint64_t interval,
+                                      uint64_t leeway,
+                                      dispatch_queue_t queue,
+                                      dispatch_block_t block);
 @end

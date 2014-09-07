@@ -80,6 +80,7 @@ const int kImageOperationActionSheet = 2;
    
     cell.processedImageView.image = nil;
     cell.progressView.hidden = imageOperation.isProcessed;
+    
     imageOperation.progress = ^(float progress){
      cell.progressView.progress = progress;
     };

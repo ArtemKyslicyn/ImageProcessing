@@ -10,5 +10,6 @@
 
 @interface ProcessImageTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *processedImageView;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 
 @end

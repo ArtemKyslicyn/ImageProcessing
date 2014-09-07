@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProcessImageApp/ImageProcessingViewController.m"
-            timestampString = "431802657.059974"
+            timestampString = "431804068.437521"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
             landmarkName = "-actionSheet:clickedButtonAtIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProcessImageApp/ImageProcessingViewController.m"
-            timestampString = "431802657.059974"
+            timestampString = "431804068.437521"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "228"
-            endingLineNumber = "228"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
             landmarkName = "-imagePickerController:didFinishPickingImage:editingInfo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProcessImageApp/ImageProcessingViewController.m"
-            timestampString = "431802657.059974"
+            timestampString = "431804068.437521"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "-actionSheet:clickedButtonAtIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProcessImageApp/ImageProcessingViewController.m"
-            timestampString = "431789426.005015"
+            timestampString = "431804068.437521"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProcessImageApp/ImageProcessingViewController.m"
-            timestampString = "431789426.005015"
+            timestampString = "431804068.437521"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProcessImageApp/ImageProcessingViewController.m"
-            timestampString = "431789426.005015"
+            timestampString = "431804068.437521"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -224,6 +224,22 @@
             startingLineNumber = "61"
             endingLineNumber = "61"
             landmarkName = "-start"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProcessImageApp/ImageProcessingViewController.m"
+            timestampString = "431804083.435434"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -79,7 +79,11 @@ const int kImageOperationActionSheet = 2;
     ImageOperation * imageOperation = [self.imagesArray objectAtIndex:indexPath.row];
    
     cell.processedImageView.image = nil;
-   
+    cell.progressView.hidden = imageOperation.isProcessed;
+    imageOperation.progress = ^(float progress){
+     cell.progressView.progress = progress;
+    };
+    
     [imageOperation processedImage:^(UIImage* image){
         cell.processedImageView.image = image;
     }];

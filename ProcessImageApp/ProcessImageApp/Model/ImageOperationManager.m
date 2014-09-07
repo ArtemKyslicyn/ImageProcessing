@@ -62,18 +62,19 @@
 }
 
 -(void)addImageOperationForImage:(UIImage*)image operation:(id (^)())operationBlock start:(void (^)())start   complete:(void (^)())complete{
+    if(!image) return;
     ImageOperation * operation = [ImageOperation new];
     operation.operation = operationBlock;
     operation.isProcessed = NO;
-    
+    __weak ImageOperation * weakOperation = operation;
     operation.completeBlock = ^(UIImage * image){
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
             
-            [ImagesFileManager saveProcessedImage:image];
+            NSString * filePath = [ImagesFileManager saveProcessedImage:image];
             dispatch_async(dispatch_get_main_queue(), ^{
-                
+                weakOperation.filePath = filePath;
                 complete();
                 
             });

@@ -10,7 +10,7 @@
 
 @interface ImagesFileManager : NSObject
 
-+(void)saveProcessedImage:(UIImage*)image;
++(NSString*)saveProcessedImage:(UIImage*)image;
 
 +(NSArray*)loadProcessedImagesFilePathsFromDocuments;
 

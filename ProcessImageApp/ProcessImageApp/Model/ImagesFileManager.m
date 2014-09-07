@@ -42,7 +42,7 @@
     return jpegFiles;
 }
 
-+(void)saveProcessedImage:(UIImage*)image{
++(NSString*)saveProcessedImage:(UIImage*)image{
     NSError * error;
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -57,7 +57,7 @@
     NSString * filePath = [dataPath stringByAppendingPathComponent:filename];
     
     [UIImagePNGRepresentation(image) writeToFile:filePath atomically:YES];
-    
+    return filePath;
     
 }
 

@@ -48,10 +48,15 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </imageView>
+                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="uFy-qU-FIP">
+                                                    <rect key="frame" x="66" y="36" width="180" height="3"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </progressView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="processedImageView" destination="b0x-8h-ydc" id="DGm-o6-f3w"/>
+                                            <outlet property="progressView" destination="uFy-qU-FIP" id="sra-Xn-O66"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

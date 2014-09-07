@@ -41,6 +41,26 @@
 }
 
 
+-(void)deleteImageProcessedOperation:(ImageOperation*)imageOperation complete:(void (^)())complete fail:(void (^)())fail {
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        BOOL sucess = [ImagesFileManager removeProcessedImageByPath:imageOperation.filePath];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if(sucess){
+                [_imageOperationsArrray removeObject:imageOperation];
+                 complete();
+            }else{
+                 fail();
+            }
+        });
+    });
+    
+    
+    
+}
+
 
 
 @end

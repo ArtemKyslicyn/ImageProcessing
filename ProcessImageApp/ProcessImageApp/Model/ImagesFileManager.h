@@ -14,5 +14,6 @@
 
 +(NSArray*)loadProcessedImagesFilePathsFromDocuments;
 
++(BOOL)removeProcessedImageByPath:(NSString*)path;
 
 @end

@@ -61,5 +61,17 @@
     
 }
 
++(BOOL)removeProcessedImageByPath:(NSString*)path{
+    
+    NSError * error = nil;
+    BOOL success = [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+    
+    if (!success) {
+        NSLog(@"Could not delete file -:%@ ",[error localizedDescription]);
+    }
+    
+    return success;
+}
+
 
 @end

@@ -21,12 +21,14 @@ const int kImageOperationActionSheet = 2;
 
 @interface ImageProcessingViewController ()
 
-@property (nonatomic,strong) NSArray * imagesArray;
-@property (nonatomic,assign) NSInteger  selectedImageIndex;
-@property (nonatomic, weak) DownloadImageViewController *containerViewController;
+@property (nonatomic,strong)  NSArray * imagesArray;
+@property (nonatomic,assign)  NSInteger  selectedImageIndex;
+@property (nonatomic, weak)   DownloadImageViewController *containerViewController;
+@property (nonatomic, strong) ImageOperationManager *operationManager;
 @end
 
 @implementation ImageProcessingViewController
+
 
 - (void)viewDidLoad{
     
@@ -36,12 +38,12 @@ const int kImageOperationActionSheet = 2;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self loadProcessedList];
+    [self updateProcessedList];
 
 }
 
 
--(void)loadProcessedList{
+-(void)updateProcessedList{
     
     self.imagesArray  = [Engine sharedManager].operationsManager.imageOperationsArrray;
     
@@ -77,6 +79,7 @@ const int kImageOperationActionSheet = 2;
     ImageOperation * imageOperation = [self.imagesArray objectAtIndex:indexPath.row];
    
     cell.processedImageView.image = nil;
+   
     [imageOperation processedImage:^(UIImage* image){
         cell.processedImageView.image = image;
     }];
@@ -225,14 +228,31 @@ const int kImageOperationActionSheet = 2;
 #pragma mark Alert view delegates
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
+    ImageOperation * imageOperation = [self.imagesArray objectAtIndex:_selectedImageIndex];
+    
     switch (buttonIndex) {
-        case 0:
+        case 1:{
+           [[Engine sharedManager].operationsManager deleteImageProcessedOperation:imageOperation complete:^{
+               
+               [self updateProcessedList];
+               
+           } fail:^{
+               
+           }];
+        }
+            break;
+        case 2:{
+            [imageOperation processedImage:^(UIImage* image){
+                [self saveToLibarayImage:image];
+            }];
+        }
             
             break;
-        case 1:
-            
-            break;
-        case 2:
+        case 3:{
+            [imageOperation processedImage:^(UIImage* image){
+                [self procesAgainImage:image];
+            }];
+        }
             
             break;
             
@@ -271,9 +291,6 @@ const int kImageOperationActionSheet = 2;
     
 }
 
--(void)deleteImage{
-    
-}
 
 #pragma mark Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

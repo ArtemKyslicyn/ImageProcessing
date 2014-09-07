@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class ImageOperation;
 @interface ImageOperationManager : NSObject
+
 @property (nonatomic,strong,readonly) NSMutableArray * imageOperationsArrray;
+
+-(void)deleteImageProcessedOperation:(ImageOperation*)imageOperation complete:(void (^)())complete fail:(void (^)())fail;
+
 @end

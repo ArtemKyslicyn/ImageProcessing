@@ -61,6 +61,33 @@
     
 }
 
+-(void)addImageOperationForImage:(UIImage*)image operation:(id (^)())operationBlock start:(void (^)())start   complete:(void (^)())complete{
+    ImageOperation * operation = [ImageOperation new];
+    operation.operation = operationBlock;
+    operation.isProcessed = NO;
+    
+    operation.completeBlock = ^(UIImage * image){
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            
+            [ImagesFileManager saveProcessedImage:image];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                complete();
+                
+            });
+        });
+        
+      
+    };
+    
+    [self.imageOperationsArrray addObject:operation];
+    [operation start];
+     start();
+    
+}
+
 
 
 @end

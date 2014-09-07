@@ -137,38 +137,45 @@ const int kImageOperationActionSheet = 2;
 
 
 - (IBAction)rotateImageAction:(id)sender {
-    self.imageView.image = [self.imageView.image rotateImageForDegree:90];
-    [ImagesFileManager saveProcessedImage: self.imageView.image];
+    UIImage * image = self.imageView.image;
+    
+    [[Engine sharedManager].operationsManager addImageOperationForImage:image operation:^id{
+        return [image horizontalMirror];
+    } start:^{
+        [self updateProcessedList];
+    } complete:^{
+        [self updateProcessedList];
+    }];
+    
 }
 
 - (IBAction)mirorImageAction:(id)sender {
-    __block UIImage * image;
+  
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        image = [self.imageView.image horizontalMirror];
-        [ImagesFileManager saveProcessedImage:image];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            /* Код, который выполниться в главном потоке */
-            self.imageView.image = image;
-        });
-    });
+    UIImage * image = self.imageView.image;
+    
+    [[Engine sharedManager].operationsManager addImageOperationForImage:image operation:^id{
+        return [image horizontalMirror];
+    } start:^{
+        [self updateProcessedList];
+    } complete:^{
+        [self updateProcessedList];
+    }];
+    
 }
 
 - (IBAction)invertColorsImageAction:(id)sender {
     
-    __block UIImage * image;
+    UIImage * image = self.imageView.image;
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-       image = [self.imageView.image invertedImage];
-        [ImagesFileManager saveProcessedImage:image];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            /* Код, который выполниться в главном потоке */
-            self.imageView.image = image;
-            
-        });
-    });
+   
+    [[Engine sharedManager].operationsManager addImageOperationForImage:image operation:^id{
+        return [image invertedImage];
+    } start:^{
+        [self updateProcessedList];
+    } complete:^{
+        [self updateProcessedList];
+    }];
     
 }
 

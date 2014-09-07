@@ -31,6 +31,7 @@
 		6ABE7D5219BB6B0200FEA502 /* ImageOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABE7D5119BB6B0200FEA502 /* ImageOperationManager.m */; };
 		6ABE7D5419BB8B5900FEA502 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ABE7D5319BB8B5900FEA502 /* AssetsLibrary.framework */; };
 		6ABE7D5719BB930300FEA502 /* Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABE7D5619BB930300FEA502 /* Engine.m */; };
+		6ABE7D5A19BCFF4600FEA502 /* DownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABE7D5919BCFF4600FEA502 /* DownloadOperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,8 @@
 		6ABE7D5319BB8B5900FEA502 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		6ABE7D5519BB930300FEA502 /* Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Engine.h; sourceTree = "<group>"; };
 		6ABE7D5619BB930300FEA502 /* Engine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Engine.m; sourceTree = "<group>"; };
+		6ABE7D5819BCFF4600FEA502 /* DownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadOperation.h; path = Model/ModelObjects/DownloadOperation.h; sourceTree = "<group>"; };
+		6ABE7D5919BCFF4600FEA502 /* DownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DownloadOperation.m; path = Model/ModelObjects/DownloadOperation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +231,8 @@
 			children = (
 				6AB9201C19BB2CF600B8E044 /* ImageOperation.h */,
 				6AB9201D19BB2CF600B8E044 /* ImageOperation.m */,
+				6ABE7D5819BCFF4600FEA502 /* DownloadOperation.h */,
+				6ABE7D5919BCFF4600FEA502 /* DownloadOperation.m */,
 			);
 			name = ModelObjects;
 			sourceTree = "<group>";
@@ -349,6 +354,7 @@
 				6AB9200419BA5FC600B8E044 /* UIImage+Effects.m in Sources */,
 				6AB9201E19BB2CF600B8E044 /* ImageOperation.m in Sources */,
 				6A2D4B8B19BA08F800C052E9 /* ImageProcessingViewController.m in Sources */,
+				6ABE7D5A19BCFF4600FEA502 /* DownloadOperation.m in Sources */,
 				6AB9200719BB0DB600B8E044 /* ImageDownloader.m in Sources */,
 				6AB9201B19BB2BB800B8E044 /* Helper.m in Sources */,
 				6ABE7D5719BB930300FEA502 /* Engine.m in Sources */,

@@ -13,10 +13,12 @@ static NSString * const KRachebilityTestResource = @"www.google.com";
 static id _sharedInstance;
 
 @implementation Engine
-+ (id)sharedManager{
+
++ (Engine*)sharedManager{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _sharedInstance = [[self alloc] init];
+        
     });
     return _sharedInstance;
 }
@@ -24,7 +26,8 @@ static id _sharedInstance;
 - (id)init
 {
     if (self = [super init]) {
-        
+         _operationsManager = [ImageOperationManager new];
+         _downloadManager  =  [ImageDownloader new];
         
     }
     return self;

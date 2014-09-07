@@ -14,4 +14,6 @@
 
 @property (nonatomic,strong) NSString * filePath;
 
+-(void)processedImage:(void (^)(UIImage* image))complete;
+
 @end

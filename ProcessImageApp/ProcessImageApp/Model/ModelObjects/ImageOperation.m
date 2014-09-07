@@ -17,5 +17,22 @@
 @implementation ImageOperation{
     
 }
+-(void)processedImage:(void (^)(UIImage* image))complete{
+    
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        UIImage * img ;
+
+       
+        img = [UIImage imageWithContentsOfFile:self.filePath];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            complete(img);
+        });
+    });
+   
+    
+    
+}
 
 @end

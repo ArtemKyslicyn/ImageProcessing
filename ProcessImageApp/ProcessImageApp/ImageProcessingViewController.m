@@ -12,6 +12,8 @@
 #import "ImagesFileManager.h"
 #import "ProcessImageTableViewCell.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "Engine.h"
+#import "ImageOperation.h"
 
 const int kAddImageActionSheet = 1;
 const int kImageOperationActionSheet = 2;
@@ -41,7 +43,8 @@ const int kImageOperationActionSheet = 2;
 
 -(void)loadProcessedList{
     
-    self.imagesArray  = [ImagesFileManager loadProcessedImagesFilePathsFromDocuments];
+    self.imagesArray  = [Engine sharedManager].operationsManager.imageOperationsArrray;
+    
     [self.tableView reloadData];
     
 }
@@ -71,13 +74,12 @@ const int kImageOperationActionSheet = 2;
                               dequeueReusableCellWithIdentifier:cellIdentifier
                               forIndexPath:indexPath];
 
+    ImageOperation * imageOperation = [self.imagesArray objectAtIndex:indexPath.row];
    
-    NSString * pathImage = [self.imagesArray objectAtIndex:indexPath.row];
-    
-    NSLog(@"%@",pathImage);
-    UIImage *img = [UIImage imageWithContentsOfFile:pathImage];
-   
-    cell.processedImageView.image = img;
+    cell.processedImageView.image = nil;
+    [imageOperation processedImage:^(UIImage* image){
+        cell.processedImageView.image = image;
+    }];
     
 
     return cell;

@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface ImageOperationManager : NSObject
-
+@property (nonatomic,strong,readonly) NSMutableArray * imageOperationsArrray;
 @end

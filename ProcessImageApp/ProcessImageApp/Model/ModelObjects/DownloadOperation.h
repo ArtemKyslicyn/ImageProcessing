@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^ProgressBlock)();
+typedef void(^ProgressBlock)(float progress);
 
-typedef id (^OperationBlock)(void);
+typedef id (^FailBlock)(void);
 
 typedef void(^CompleteBlock)(UIImage * image);
 
@@ -18,9 +18,12 @@ typedef void(^CompleteBlock)(UIImage * image);
 
 @property (nonatomic,copy) ProgressBlock progressBlock ;
 
-@property (nonatomic,copy) OperationBlock operation ;
+@property (nonatomic,copy) FailBlock failBlock ;
 
 @property (nonatomic,copy) CompleteBlock completeBlock ;
 
+-(void)downloadByUrlString:(NSString*)urlString;
+
+-(void)start;
 
 @end

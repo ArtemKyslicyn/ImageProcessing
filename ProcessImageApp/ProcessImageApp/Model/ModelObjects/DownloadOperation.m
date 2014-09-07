@@ -13,7 +13,7 @@
 
 @end
 @implementation DownloadOperation{
-    
+    NSURLConnection *_theConnection;
 }
 
 
@@ -22,10 +22,10 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]  cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                          timeoutInterval:10.0];
     
-    NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:request delegate:self];
-    [theConnection start];
+    _theConnection=[[NSURLConnection alloc] initWithRequest:request delegate:self];
     
-    if (theConnection) {
+    
+    if (_theConnection) {
         
         self.receivedData = [NSMutableData data] ;
         
@@ -35,7 +35,9 @@
 }
 
 
-
+-(void)start{
+    [_theConnection start];
+}
 
 
 
@@ -57,6 +59,8 @@
 
 - (void)connection:(NSURLConnection *)connection didWriteData:(long long)bytesWritten totalBytesWritten:(long long)totalBytesWritten expectedTotalBytes:(long long) expectedTotalBytes{
     NSLog(@" is %lld  from% lld",totalBytesWritten,expectedTotalBytes);
+    float progress = totalBytesWritten/expectedTotalBytes;
+    self.progressBlock(progress);
 }
 
 

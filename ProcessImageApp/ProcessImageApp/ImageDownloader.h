@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface ImageDownloader : NSObject
-
+@property (nonatomic,strong,readonly) NSMutableArray * imageDownloadOperationsArrray;
 @end

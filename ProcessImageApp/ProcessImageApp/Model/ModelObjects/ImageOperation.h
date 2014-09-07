@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^ProgressBlock)(float progress);
+typedef void(^ProgressBlock)();
 
 typedef id (^OperationBlock)(void);
 
@@ -18,10 +18,11 @@ typedef void(^CompleteBlock)(UIImage * image);
 @interface ImageOperation : NSObject
 
 @property (nonatomic,assign) BOOL isProcessed ;
+@property (nonatomic,assign) float progress ;
 
 @property (nonatomic,strong) NSString * filePath;
 
-@property (nonatomic,copy) ProgressBlock progress ;
+@property (nonatomic,copy) ProgressBlock progressBlock ;
 
 @property (nonatomic,copy) OperationBlock operation ;
 

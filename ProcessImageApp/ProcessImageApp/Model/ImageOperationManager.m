@@ -61,7 +61,7 @@
     
 }
 
--(void)addImageOperationForImage:(UIImage*)image operation:(id (^)())operationBlock start:(void (^)())start   complete:(void (^)())complete{
+-(void)addImageOperationForImage:(UIImage*)image operation:(id (^)())operationBlock start:(void (^)())start   complete:(void (^)())complete progress:(void (^)())progress{
     if(!image) return;
     ImageOperation * operation = [ImageOperation new];
     operation.operation = operationBlock;
@@ -84,8 +84,15 @@
     };
     
     [self.imageOperationsArrray addObject:operation];
+    
+    operation.progressBlock = ^(){
+        progress();
+        // cell.progressView.progress = progress;
+    } ;
+
     [operation start];
-     start();
+    
+    start();
     
 }
 

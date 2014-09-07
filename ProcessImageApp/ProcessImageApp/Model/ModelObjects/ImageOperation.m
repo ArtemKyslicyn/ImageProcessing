@@ -15,7 +15,10 @@
 @end
 
 @implementation ImageOperation{
-    
+    NSTimer * _timer;
+    float _timerFires;
+    float _periodTime;
+   
 }
 
 -(void)processedImage:(void (^)(UIImage* image))complete{
@@ -25,7 +28,7 @@
         UIImage * img ;
 
        
-        img = [UIImage imageWithContentsOfFile:self.filePath];
+        img= [UIImage imageWithContentsOfFile:self.filePath];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             complete(img);
@@ -42,57 +45,70 @@
        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
            UIImage * image = self.operation();
           
-         float periodTime = rand() % (25) + 5;
+         _periodTime = rand() % (25) + 5;
           
            
            
-           dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(periodTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+           dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(_periodTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                
                dispatch_async(dispatch_get_main_queue(), ^{
                    self.completeBlock(image);
                    self.isProcessed = YES;
-               });
+                });
                
           });
            
-           __block int timerFires = 0;
+           
 
            
-           
-  
-           
-           dispatch_source_t aTimer = CreateDispatchTimer(30ull * NSEC_PER_SEC,
-                                                          1ull * NSEC_PER_SEC,
-                                                          dispatch_get_main_queue(),
-                                                          ^{
-                                                          
-                                                              timerFires++;
-                                                              float progress = (timerFires) /periodTime;
-                                                              dispatch_async(dispatch_get_main_queue(), ^{
-                                                                  self.progress(progress);
-                                                              });
-                                                          });
+    
+
            
           
           
            
          
        });
+   
+    _timer = [NSTimer scheduledTimerWithTimeInterval: 5
+                                              target: self
+                                            selector: @selector(progressUpdate:)
+                                            userInfo: nil
+                                            repeats: YES];
+    
+//            CreateDispatchTimer(5 * NSEC_PER_SEC,
+//                                                             _periodTime * NSEC_PER_SEC,
+//                                                              dispatch_get_main_queue(),
+//                                                             ^{
+//    
+//                                                               _timerFires++;
+//                                                                float progress = (_timerFires) /_periodTime;
+//                                                               // self.progressBlock(progress);
+//                                                                 NSLog(@"progress %f",progress);
+//                                                                
+//                                                             });
     
 }
-//-(void)invertOperationForImage:(UIImage*)image{
-//    __block UIImage * resultImage;
-//    
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        
-//        resultImage = [image invertedImage];
-//        [ImagesFileManager saveProcessedImage:image];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            /* Код, который выполниться в главном потоке */
-//            self.imageView.image = image;
-//            
-//        });
-//    });
-//}
+
+-(void)progressUpdate:(id)sender{
+    _timerFires++;
+    
+    NSLog(@"timer %f",_timerFires);
+     NSLog(@"period %f",_periodTime);
+    
+    float progress = (_timerFires*5) /_periodTime;
+    NSLog(@"progress %f",progress);
+    
+    self.progress = progress;
+    self.progressBlock();
+    
+    if((_timerFires*5) >= _periodTime){
+        [_timer invalidate];
+    }
+    
+    
+}
+
+
 
 @end

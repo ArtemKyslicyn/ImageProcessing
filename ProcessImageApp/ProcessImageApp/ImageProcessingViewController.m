@@ -81,9 +81,7 @@ const int kImageOperationActionSheet = 2;
     cell.processedImageView.image = nil;
     cell.progressView.hidden = imageOperation.isProcessed;
     
-    imageOperation.progress = ^(float progress){
-     cell.progressView.progress = progress;
-    };
+    cell.progressView.progress = imageOperation.progress;
     
     [imageOperation processedImage:^(UIImage* image){
         cell.processedImageView.image = image;
@@ -150,6 +148,9 @@ const int kImageOperationActionSheet = 2;
         [self updateProcessedList];
     } complete:^{
         [self updateProcessedList];
+    }
+    progress:^{
+        [self updateProcessedList];
     }];
     
 }
@@ -165,6 +166,9 @@ const int kImageOperationActionSheet = 2;
         [self updateProcessedList];
     } complete:^{
         [self updateProcessedList];
+    }
+    progress:^{
+        [self updateProcessedList];
     }];
     
 }
@@ -179,6 +183,9 @@ const int kImageOperationActionSheet = 2;
     } start:^{
         [self updateProcessedList];
     } complete:^{
+        [self updateProcessedList];
+    }
+    progress:^{
         [self updateProcessedList];
     }];
     

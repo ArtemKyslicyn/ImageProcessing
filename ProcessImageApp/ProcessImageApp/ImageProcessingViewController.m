@@ -143,7 +143,7 @@ const int kImageOperationActionSheet = 2;
     UIImage * image = self.imageView.image;
     
     [[Engine sharedManager].operationsManager addImageOperationForImage:image operation:^id{
-        return [image horizontalMirror];
+        return [image rotateImageForDegree:90];
     } start:^{
         [self updateProcessedList];
     } complete:^{

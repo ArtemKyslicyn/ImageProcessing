@@ -10,7 +10,7 @@
 
 typedef void(^ProgressBlock)(float progress);
 
-typedef id (^FailBlock)(void);
+typedef id (^FailBlock)(NSError * error);
 
 typedef void(^CompleteBlock)(UIImage * image);
 

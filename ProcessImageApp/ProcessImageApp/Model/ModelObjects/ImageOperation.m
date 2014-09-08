@@ -21,17 +21,17 @@
     NSTimer *_timer;
     float _timerFires;
     float _periodTime;
-    UIImage *_img;
+   // UIImage *_img;
 }
 
 - (void)processedImage:(void (^)(UIImage *image))complete
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         UIImage *img = nil;
-        _img = [UIImage imageWithContentsOfFile:self.filePath];
+        img = [UIImage imageWithContentsOfFile:self.filePath];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            complete(_img);
+            complete(img);
         });
     });
 }

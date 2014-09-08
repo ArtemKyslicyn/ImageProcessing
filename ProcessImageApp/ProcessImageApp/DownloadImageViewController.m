@@ -13,6 +13,7 @@
 - (IBAction)okAction:(id)sender {
  
     [self dismissViewControllerAnimated:YES completion:Nil];
+    [self.delegate successChoosedImage:self.iamgeView.image];
 
 }
 

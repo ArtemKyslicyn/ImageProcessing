@@ -24,7 +24,7 @@
 - (void)downloadByUrlString:(NSString *)urlString
 {
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]
-                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
                                          timeoutInterval:10.0];
     
     _theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -32,6 +32,7 @@
     if (_theConnection) {
         self.receivedData = [NSMutableData data];
     }
+    
 }
 
 - (void)start
@@ -62,11 +63,7 @@
     self.progressBlock(progress);
 }
 
-- (void)connectionDidFinishDownloading:(NSURLConnection *)connection destinationURL:(NSURL *)destinationURL
-{
-    self.completeBlock([UIImage imageWithData:self.receivedData]);
-    
-}
+
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {

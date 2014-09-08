@@ -21,7 +21,7 @@
 - (void)addImageOperationForImage:(UIImage *)image
                         operation:(id (^)())operationBlock
                             start:(void (^)())start
-                         complete:(void (^)())complete
+                         complete:(void (^)(UIImage*))complete
                          progress:(void (^)())progress;
 
 @end

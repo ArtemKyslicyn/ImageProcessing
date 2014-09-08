@@ -130,8 +130,9 @@ const int kImageOperationActionSheet = 2;
         return [image rotateImageForDegree:90];
     } start:^{
         [self updateProcessedList];
-    } complete:^{
+    } complete:^(UIImage*image){
         [self updateProcessedList];
+         self.imageView.image = image;
     }
     progress:^{
         [self updateProcessedList];
@@ -146,8 +147,9 @@ const int kImageOperationActionSheet = 2;
         return [image horizontalMirror];
     } start:^{
         [self updateProcessedList];
-    } complete:^{
+    } complete:^(UIImage*image){
         [self updateProcessedList];
+         self.imageView.image = image;
     }
     progress:^{
         [self updateProcessedList];
@@ -162,8 +164,9 @@ const int kImageOperationActionSheet = 2;
         return [image invertedImage];
     } start:^{
         [self updateProcessedList];
-    } complete:^{
+    } complete:^(UIImage*image){
         [self updateProcessedList];
+        self.imageView.image = image;
     }
     progress:^{
         [self updateProcessedList];

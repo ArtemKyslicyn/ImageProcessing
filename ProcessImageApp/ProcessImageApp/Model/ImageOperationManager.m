@@ -61,7 +61,7 @@
 - (void)addImageOperationForImage:(UIImage *)image
                         operation:(id (^)())operationBlock
                             start:(void (^)())start
-                         complete:(void (^)())complete
+                         complete:(void (^)(UIImage*))complete
                          progress:(void (^)())progress
 {
     if (!image) return;
@@ -77,7 +77,7 @@
             NSString *filePath = [ImagesFileManager saveProcessedImage:image];
             dispatch_async(dispatch_get_main_queue(), ^{
                 weakOperation.filePath = filePath;
-                complete();
+                complete(image);
             });
         });
     };

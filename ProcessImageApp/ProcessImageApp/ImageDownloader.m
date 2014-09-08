@@ -21,13 +21,14 @@
     
     DownloadOperation *operation = [DownloadOperation new];
     operation.completeBlock = complete;
-    
+    operation.failBlock = fail;
     [self.imageDownloadOperationsArrray addObject:operation];
     
     operation.progressBlock = ^(float progress) {
         progressBlock(progress);
             // cell.progressView.progress = progress;
     };
+    [operation downloadByUrlString:url];
     
     [operation start];
 }

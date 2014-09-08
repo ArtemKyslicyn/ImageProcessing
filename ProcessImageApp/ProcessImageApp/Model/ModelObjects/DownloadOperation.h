@@ -9,7 +9,7 @@
 
 typedef void (^ProgressBlock)(float progress);
 typedef void (^CompleteBlock)(UIImage *image);
-typedef id (^FailBlock)(NSError *error);
+typedef void (^FailBlock)(NSError *error);
 
 
 @interface DownloadOperation : NSObject

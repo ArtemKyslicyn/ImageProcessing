@@ -22,6 +22,6 @@
                         operation:(id (^)())operationBlock
                             start:(void (^)())start
                          complete:(void (^)(UIImage*))complete
-                         progress:(void (^)())progress;
+                         progress:(void (^)(ImageOperation*))progress;
 
 @end

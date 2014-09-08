@@ -62,7 +62,7 @@
                         operation:(id (^)())operationBlock
                             start:(void (^)())start
                          complete:(void (^)(UIImage*))complete
-                         progress:(void (^)())progress
+                         progress:(void (^)(ImageOperation*))progress
 {
     if (!image) return;
     
@@ -82,10 +82,10 @@
         });
     };
     
-    [self.imageOperationsArrray addObject:operation];
+    [self.imageOperationsArrray insertObject:operation atIndex:0];
     
     operation.progressBlock = ^() {
-        progress();
+            progress(weakOperation);
             // cell.progressView.progress = progress;
     };
     

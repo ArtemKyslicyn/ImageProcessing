@@ -136,8 +136,12 @@ const NSInteger kImageOperationActionSheet = 2;
         [weakSelf updateProcessedList];
          self.imageView.image = image;
     }
-    progress:^{
-        [weakSelf updateProcessedList];
+    progress:^(ImageOperation * imageOperation){
+        //[weakSelf updateProcessedList];
+        NSUInteger row =[weakSelf.imagesArray indexOfObject:imageOperation];
+        NSIndexPath* rowToReload = [NSIndexPath indexPathForRow:row inSection:0];
+        NSArray* rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
+        [weakSelf.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
     }];
 }
 
@@ -155,9 +159,14 @@ const NSInteger kImageOperationActionSheet = 2;
         [weakSelf updateProcessedList];
          self.imageView.image = image;
     }
-    progress:^{
-        [weakSelf updateProcessedList];
+    
+    progress:^(ImageOperation * imageOperation){
+        NSUInteger row =[weakSelf.imagesArray indexOfObject:imageOperation];
+        NSIndexPath* rowToReload = [NSIndexPath indexPathForRow:row inSection:0];
+        NSArray* rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
+        [weakSelf.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
     }];
+    
 }
 
 - (IBAction)invertColorsImageAction:(id)sender
@@ -174,8 +183,12 @@ const NSInteger kImageOperationActionSheet = 2;
         [self updateProcessedList];
         weakSelf.imageView.image = image;
     }
-    progress:^{
-        [weakSelf updateProcessedList];
+     
+    progress:^(ImageOperation * imageOperation){
+        NSUInteger row =[weakSelf.imagesArray indexOfObject:imageOperation];
+        NSIndexPath* rowToReload = [NSIndexPath indexPathForRow:row inSection:0];
+        NSArray* rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
+        [weakSelf.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
     }];
 }
 

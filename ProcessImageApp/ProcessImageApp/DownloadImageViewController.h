@@ -7,6 +7,20 @@
 //
 
 
+@protocol DownloadImageViewControllerDelegate <NSObject>
+
+-(void)successChoosedImage:(UIImage*)image;
+
+@end
+
+
 @interface DownloadImageViewController : UIViewController
+- (IBAction)okAction:(id)sender;
+- (IBAction)cancelAction:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIImageView *iamgeView;
+@property (weak, nonatomic) IBOutlet UITextField *urlTextField;
+@property (nonatomic, weak) id <DownloadImageViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 
 @end

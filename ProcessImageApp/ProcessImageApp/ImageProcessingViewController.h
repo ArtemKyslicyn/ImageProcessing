@@ -6,8 +6,9 @@
 //  Copyright (c) 2014 Arcilite. All rights reserved.
 //
 
+#import "DownloadImageViewController.h"
 
-@interface ImageProcessingViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
+@interface ImageProcessingViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate,DownloadImageViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

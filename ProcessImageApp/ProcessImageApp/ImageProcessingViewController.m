@@ -22,7 +22,7 @@ const int kImageOperationActionSheet = 2;
 
 @property (nonatomic, strong)  NSArray *imagesArray;
 @property (nonatomic, assign)  NSInteger selectedImageIndex;
-@property (nonatomic, weak)   DownloadImageViewController *containerViewController;
+
 @property (nonatomic, strong) ImageOperationManager *operationManager;
 
 @end
@@ -34,6 +34,7 @@ const int kImageOperationActionSheet = 2;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setModalPresentationStyle:UIModalPresentationCurrentContext];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -180,10 +181,10 @@ const int kImageOperationActionSheet = 2;
             
             break;
             
-        case 1:
+        case 1:{
             
-         //   [self performSegueWithIdentifier:@"embedContainer" sender:nil];
-            
+           [self performSegueWithIdentifier:@"modalDownload" sender:nil];
+        }
             break;
             
         case 2:
@@ -282,9 +283,19 @@ const int kImageOperationActionSheet = 2;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    //    if ([segue.identifier isEqualToString:@"embedContainer"]) {
-    //        self.containerViewController = segue.destinationViewController;
-    //    }
+    if ([segue.identifier isEqualToString:@"modalDownload"]) {
+        
+        DownloadImageViewController *dowbloadViewController = (DownloadImageViewController *) segue.destinationViewController;
+        [dowbloadViewController setDelegate:self];
+    }
+    
+}
+#pragma mark - DownloadImageProcessingDelegate
+
+-(void)successChoosedImage:(UIImage*)image{
+    
+    self.imageView.image = image;
+    
 }
 
 @end

@@ -49,6 +49,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection{
     
+     self.completeBlock([UIImage imageWithData:self.receivedData]);
     
 }
 
@@ -63,6 +64,7 @@
 
 - (void)connectionDidFinishDownloading:(NSURLConnection *)connection destinationURL:(NSURL *)destinationURL
 {
+    self.completeBlock([UIImage imageWithData:self.receivedData]);
     
 }
 

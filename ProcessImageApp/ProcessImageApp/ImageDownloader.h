@@ -11,4 +11,9 @@
 
 @property (nonatomic, strong, readonly) NSMutableArray *imageDownloadOperationsArrray;
 
+- (void)addImageOperationForUrlString:(NSString *)url
+                                 fail:(void (^)(NSError *))fail
+                             complete:(void (^)(UIImage *image))complete
+                             progress:(void (^)(float progress))progressBlock;
+
 @end

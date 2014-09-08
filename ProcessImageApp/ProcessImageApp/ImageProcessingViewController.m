@@ -14,14 +14,14 @@
 #import "ProcessImageTableViewCell.h"
 #import "UIImage+Effects.h"
 
-const int kAddImageActionSheet = 1;
-const int kImageOperationActionSheet = 2;
+const NSInteger kAddImageActionSheet = 1;
+const NSInteger kImageOperationActionSheet = 2;
 
 
 @interface ImageProcessingViewController ()
 
 @property (nonatomic, strong)  NSArray *imagesArray;
-@property (nonatomic, assign)  NSInteger selectedImageIndex;
+@property (nonatomic, assign) NSInteger selectedImageIndex;
 
 @property (nonatomic, strong) ImageOperationManager *operationManager;
 
@@ -126,16 +126,18 @@ const int kImageOperationActionSheet = 2;
 - (IBAction)rotateImageAction:(id)sender {
     UIImage * image = self.imageView.image;
     
+    __weak typeof(self) weakSelf = self;
+    
     [[Engine sharedManager].operationsManager addImageOperationForImage:image operation:^id{
         return [image rotateImageForDegree:90];
     } start:^{
-        [self updateProcessedList];
+        [weakSelf updateProcessedList];
     } complete:^(UIImage*image){
-        [self updateProcessedList];
+        [weakSelf updateProcessedList];
          self.imageView.image = image;
     }
     progress:^{
-        [self updateProcessedList];
+        [weakSelf updateProcessedList];
     }];
 }
 
@@ -143,16 +145,18 @@ const int kImageOperationActionSheet = 2;
 {
     UIImage * image = self.imageView.image;
     
+    __weak typeof(self) weakSelf = self;
+    
     [[Engine sharedManager].operationsManager addImageOperationForImage:image operation:^id{
         return [image horizontalMirror];
     } start:^{
-        [self updateProcessedList];
+        [weakSelf updateProcessedList];
     } complete:^(UIImage*image){
-        [self updateProcessedList];
+        [weakSelf updateProcessedList];
          self.imageView.image = image;
     }
     progress:^{
-        [self updateProcessedList];
+        [weakSelf updateProcessedList];
     }];
 }
 
@@ -160,16 +164,18 @@ const int kImageOperationActionSheet = 2;
 {
     UIImage * image = self.imageView.image;
     
+    __weak typeof(self) weakSelf = self;
+    
     [[Engine sharedManager].operationsManager addImageOperationForImage:image operation:^id{
         return [image invertedImage];
     } start:^{
-        [self updateProcessedList];
+        [weakSelf updateProcessedList];
     } complete:^(UIImage*image){
         [self updateProcessedList];
-        self.imageView.image = image;
+        weakSelf.imageView.image = image;
     }
     progress:^{
-        [self updateProcessedList];
+        [weakSelf updateProcessedList];
     }];
 }
 
@@ -226,11 +232,11 @@ const int kImageOperationActionSheet = 2;
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     ImageOperation *imageOperation = [self.imagesArray objectAtIndex:_selectedImageIndex];
-    
+    __weak typeof(self) weakSelf = self;
     switch (buttonIndex) {
         case 1: {
             [[Engine sharedManager].operationsManager deleteImageProcessedOperation:imageOperation complete: ^{
-                [self updateProcessedList];
+                [weakSelf updateProcessedList];
             } fail: ^{
             }];
         }
@@ -238,7 +244,7 @@ const int kImageOperationActionSheet = 2;
             
         case 2: {
             [imageOperation processedImage: ^(UIImage *image) {
-                [self saveToLibarayImage:image];
+                [weakSelf saveToLibarayImage:image];
             }];
         }
             
@@ -246,7 +252,7 @@ const int kImageOperationActionSheet = 2;
             
         case 3: {
             [imageOperation processedImage: ^(UIImage *image) {
-                [self procesAgainImage:image];
+                [weakSelf procesAgainImage:image];
             }];
         }
             

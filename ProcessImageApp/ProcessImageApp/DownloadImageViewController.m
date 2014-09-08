@@ -23,14 +23,15 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     if (textField.text.length>0) {
+        __weak typeof(self) weakSelf = self;
         [[Engine sharedManager].downloadManager addImageOperationForUrlString:textField.text fail:^(NSError *error) {
             
         } complete:^(UIImage *image) {
             
-            self.iamgeView.image = image;
+            weakSelf.iamgeView.image = image;
             
         } progress:^(float progress) {
-            self.progressView.progress = progress;
+            weakSelf.progressView.progress = progress;
         }];
     }
     [textField resignFirstResponder];

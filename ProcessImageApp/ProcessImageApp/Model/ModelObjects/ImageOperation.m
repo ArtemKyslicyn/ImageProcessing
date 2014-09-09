@@ -51,7 +51,7 @@
         });
     });
     
-    _timer = [NSTimer scheduledTimerWithTimeInterval:5
+    _timer = [NSTimer scheduledTimerWithTimeInterval: 1
                                               target:self
                                             selector:@selector(progressUpdate:)
                                             userInfo:nil
@@ -65,13 +65,13 @@
     NSLog(@"timer %f", _timerFires);
     NSLog(@"period %f", _periodTime);
     
-    float progress = (_timerFires * 5) / _periodTime;
+    float progress = (_timerFires  ) / _periodTime;
     NSLog(@"progress %f", progress);
     
     self.progress = progress;
     self.progressBlock();
     
-    if ((_timerFires * 5) >= _periodTime) {
+    if ((_timerFires ) >= _periodTime) {
         [_timer invalidate];
     }
 }

@@ -7,9 +7,9 @@
 //
 
 
-typedef void(^ProgressBlock)();
+typedef void(^ProgressBlock)(ImageOperation * operation);
 typedef id (^OperationBlock)(void);
-typedef void(^CompleteBlock)(UIImage * image);
+typedef void(^CompleteBlock)(UIImage * image, ImageOperation * operation);
 
 
 @interface ImageOperation : NSObject

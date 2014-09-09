@@ -70,13 +70,13 @@
     operation.operation = operationBlock;
     operation.isProcessed = NO;
     
-    __weak ImageOperation *weakOperation = operation;
+   
     
-    operation.completeBlock = ^(UIImage *image) {
+    operation.completeBlock = ^(UIImage *image,ImageOperation * operation) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             NSString *filePath = [ImagesFileManager saveProcessedImage:image];
             dispatch_async(dispatch_get_main_queue(), ^{
-                weakOperation.filePath = filePath;
+                operation.filePath = filePath;
                 complete(image);
             });
         });
@@ -84,9 +84,10 @@
     
     [self.imageOperationsArrray insertObject:operation atIndex:0];
     
-    operation.progressBlock = ^() {
-            progress(weakOperation);
-            // cell.progressView.progress = progress;
+    operation.progressBlock = ^(ImageOperation * operation) {
+        
+        progress(operation);
+        
     };
     
     [operation start];

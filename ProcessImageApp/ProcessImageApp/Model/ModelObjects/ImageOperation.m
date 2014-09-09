@@ -45,7 +45,7 @@
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(_periodTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.completeBlock(image);
+                self.completeBlock(image,self);
                 self.isProcessed = YES;
             });
         });
@@ -69,7 +69,7 @@
     NSLog(@"progress %f", progress);
     
     self.progress = progress;
-    self.progressBlock();
+    self.progressBlock(self);
     
     if ((_timerFires ) >= _periodTime) {
         [_timer invalidate];

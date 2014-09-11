@@ -21,6 +21,8 @@
 		6A2D4B9619BA08F800C052E9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A2D4B7819BA08F800C052E9 /* UIKit.framework */; };
 		6A2D4B9E19BA08F800C052E9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6A2D4B9C19BA08F800C052E9 /* InfoPlist.strings */; };
 		6A2D4BA019BA08F800C052E9 /* ProcessImageAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2D4B9F19BA08F800C052E9 /* ProcessImageAppTests.m */; };
+		6A3EA6F819BF382600EF2725 /* ImageExiffDataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3EA6F719BF382600EF2725 /* ImageExiffDataObject.m */; };
+		6A3EA6FA19BF39BD00EF2725 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A3EA6F919BF39BD00EF2725 /* ImageIO.framework */; };
 		6AB9200419BA5FC600B8E044 /* UIImage+Effects.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9200319BA5FC600B8E044 /* UIImage+Effects.m */; };
 		6AB9200719BB0DB600B8E044 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9200619BB0DB600B8E044 /* ImageDownloader.m */; };
 		6AB9200A19BB0F2B00B8E044 /* ImagesFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9200919BB0F2B00B8E044 /* ImagesFileManager.m */; };
@@ -64,6 +66,9 @@
 		6A2D4B9B19BA08F800C052E9 /* ProcessImageAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ProcessImageAppTests-Info.plist"; sourceTree = "<group>"; };
 		6A2D4B9D19BA08F800C052E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6A2D4B9F19BA08F800C052E9 /* ProcessImageAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessImageAppTests.m; sourceTree = "<group>"; };
+		6A3EA6F619BF382600EF2725 /* ImageExiffDataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageExiffDataObject.h; path = Model/ModelObjects/ImageExiffDataObject.h; sourceTree = "<group>"; };
+		6A3EA6F719BF382600EF2725 /* ImageExiffDataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageExiffDataObject.m; path = Model/ModelObjects/ImageExiffDataObject.m; sourceTree = "<group>"; };
+		6A3EA6F919BF39BD00EF2725 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		6AB9200219BA5FC600B8E044 /* UIImage+Effects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Effects.h"; path = "Helpers/UIImage+Effects.h"; sourceTree = "<group>"; };
 		6AB9200319BA5FC600B8E044 /* UIImage+Effects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Effects.m"; path = "Helpers/UIImage+Effects.m"; sourceTree = "<group>"; };
 		6AB9200519BB0DB600B8E044 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDownloader.h; sourceTree = "<group>"; };
@@ -92,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A3EA6FA19BF39BD00EF2725 /* ImageIO.framework in Frameworks */,
 				6ABE7D5419BB8B5900FEA502 /* AssetsLibrary.framework in Frameworks */,
 				6A2D4B7719BA08F800C052E9 /* CoreGraphics.framework in Frameworks */,
 				6A2D4B7919BA08F800C052E9 /* UIKit.framework in Frameworks */,
@@ -134,6 +140,7 @@
 		6A2D4B7319BA08F800C052E9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6A3EA6F919BF39BD00EF2725 /* ImageIO.framework */,
 				6ABE7D5319BB8B5900FEA502 /* AssetsLibrary.framework */,
 				6A2D4B7419BA08F800C052E9 /* Foundation.framework */,
 				6A2D4B7619BA08F800C052E9 /* CoreGraphics.framework */,
@@ -233,6 +240,8 @@
 				6AB9201D19BB2CF600B8E044 /* ImageOperation.m */,
 				6ABE7D5819BCFF4600FEA502 /* DownloadOperation.h */,
 				6ABE7D5919BCFF4600FEA502 /* DownloadOperation.m */,
+				6A3EA6F619BF382600EF2725 /* ImageExiffDataObject.h */,
+				6A3EA6F719BF382600EF2725 /* ImageExiffDataObject.m */,
 			);
 			name = ModelObjects;
 			sourceTree = "<group>";
@@ -356,6 +365,7 @@
 				6A2D4B8B19BA08F800C052E9 /* ImageProcessingViewController.m in Sources */,
 				6ABE7D5A19BCFF4600FEA502 /* DownloadOperation.m in Sources */,
 				6AB9200719BB0DB600B8E044 /* ImageDownloader.m in Sources */,
+				6A3EA6F819BF382600EF2725 /* ImageExiffDataObject.m in Sources */,
 				6AB9201B19BB2BB800B8E044 /* Helper.m in Sources */,
 				6ABE7D5719BB930300FEA502 /* Engine.m in Sources */,
 				6ABE7D4F19BB38FF00FEA502 /* ProcessImageTableViewCell.m in Sources */,

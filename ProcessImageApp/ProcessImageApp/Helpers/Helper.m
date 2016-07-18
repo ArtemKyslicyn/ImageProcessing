@@ -11,10 +11,10 @@
 
 @implementation Helper
 
-+ (NSString *)timeStamp; {
-    NSTimeInterval interval = [[NSDate date] timeIntervalSince1970] * 1000;
-    NSInteger time = interval;
-    return [NSString stringWithFormat:@"%ld", (long)time];
+
+
++ (NSString *) timeStamp {
+  return [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970] * 1000];
 }
 
 dispatch_source_t CreateDispatchTimer(uint64_t         interval,

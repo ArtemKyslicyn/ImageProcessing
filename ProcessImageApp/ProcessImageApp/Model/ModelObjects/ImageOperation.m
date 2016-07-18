@@ -8,7 +8,7 @@
 
 #import "ImageOperation.h"
 #import "Helper.h"
-
+#import "ImagesFileManager.h"
 
 @interface ImageOperation()
 
@@ -21,7 +21,6 @@
     NSTimer *_timer;
     float _timerFires;
     float _periodTime;
-   // UIImage *_img;
 }
 
 - (void)processedImage:(void (^)(UIImage *image))complete
@@ -32,22 +31,27 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             complete(img);
+         // self.image = img;
         });
     });
 }
 
 - (void)start
 {
+  _periodTime = 30;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         UIImage *image = self.operation();
         
         _periodTime = rand() % (25) + 5;
-        
+        //self.filePath = [ImagesFileManager saveProcessedImage:image];
+      
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(_periodTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.completeBlock(image,self);
+              
                 self.image = image;
                 self.isProcessed = YES;
+              
+                self.completeBlock(image,self);
             });
         });
     });

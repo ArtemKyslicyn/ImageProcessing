@@ -10,6 +10,25 @@
 
 @implementation DownloadImageViewController
 
+-(void)awakeFromNib{
+   [self setModalPresentationStyle:UIModalPresentationOverCurrentContext];
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
+  [UIView animateWithDuration:0.4 animations:^() {self.view.alpha = 1;}
+                   completion:^(BOOL finished){}];
+}
+- (void)viewDidLoad
+{
+  [super viewDidLoad];
+  self.view.alpha = 0;
+  self.modalPresentationStyle = UIModalPresentationOverFullScreen;
+  self.providesPresentationContextTransitionStyle = YES;
+  self.definesPresentationContext = YES;
+  self.view.backgroundColor = [UIColor clearColor];
+  
+}
 - (IBAction)okAction:(id)sender {
  
     [self dismissViewControllerAnimated:YES completion:Nil];

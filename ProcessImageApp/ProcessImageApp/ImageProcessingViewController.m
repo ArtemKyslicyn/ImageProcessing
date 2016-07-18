@@ -1,4 +1,4 @@
-//
+///
 //  ViewController.m
 //  ProcessImageApp
 //
@@ -333,10 +333,15 @@ const NSInteger kImageOperationActionSheet = 2;
     if ([segue.identifier isEqualToString:@"modalDownload"]) {
         
         DownloadImageViewController *dowbloadViewController = (DownloadImageViewController *) segue.destinationViewController;
+      self.definesPresentationContext = YES; //self is presenting view controller
+     // presentedController.view.backgroundColor = [UIColor clearColor];      presentedController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         [dowbloadViewController setDelegate:self];
     }
     
 }
+
+
+
 #pragma mark - DownloadImageProcessingDelegate
 
 -(void)successChoosedImage:(UIImage*)image{

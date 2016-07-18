@@ -20,6 +20,7 @@ typedef void(^CompleteBlock)(UIImage * image, ImageOperation * operation);
 @property (nonatomic, copy) ProgressBlock progressBlock;
 @property (nonatomic, copy) OperationBlock operation;
 @property (nonatomic, copy) CompleteBlock completeBlock;
+@property (nonatomic, strong) UIImage *image;
 
 -(void)processedImage:(void (^)(UIImage* image))complete;
 -(void)start;

@@ -16,6 +16,7 @@
 - (IBAction)rotateImageAction:(id)sender;
 - (IBAction)mirorImageAction:(id)sender;
 - (IBAction)invertColorsImageAction:(id)sender;
+- (IBAction)blurAction:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 

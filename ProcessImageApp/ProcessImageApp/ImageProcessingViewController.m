@@ -74,9 +74,10 @@ const NSInteger kImageOperationActionSheet = 2;
     cell.processedImageView.image = nil;
     cell.progressView.hidden = imageOperation.isProcessed;
     cell.progressView.progress = imageOperation.progress;
-    
+    cell.processedImageView.image = imageOperation.image;
     [imageOperation processedImage: ^(UIImage *image) {
         cell.processedImageView.image = image;
+        [self.tableView reloadData];
     }];
     
     return cell;
@@ -190,6 +191,30 @@ const NSInteger kImageOperationActionSheet = 2;
         NSArray* rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
         [weakSelf.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
     }];
+}
+
+- (IBAction)blurAction:(id)sender {
+  UIImage * image = self.imageView.image;
+  
+  __weak typeof(self) weakSelf = self;
+  
+  [[Engine sharedManager].operationsManager addImageOperationForImage:image operation:^id{
+    return [image applyBlurWithRadius:5 tintColor:[UIColor colorWithRed:1.0 green:0 blue:0 alpha:0.4] saturationDeltaFactor:0.1 maskImage:image];
+  } start:^{
+    [weakSelf updateProcessedList];
+  } complete:^(UIImage*image){
+    [weakSelf updateProcessedList];
+    self.imageView.image = image;
+  }
+          progress:^(ImageOperation * imageOperation){
+            
+            NSUInteger row =[weakSelf.imagesArray indexOfObject:imageOperation];
+            NSIndexPath* rowToReload = [NSIndexPath indexPathForRow:row inSection:0];
+            NSArray* rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
+            [weakSelf.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
+    }];
+
+  
 }
 
 #pragma mark - Action sheet delegate

@@ -199,7 +199,7 @@ const NSInteger kImageOperationActionSheet = 2;
   __weak typeof(self) weakSelf = self;
   
   [[Engine sharedManager].operationsManager addImageOperationForImage:image operation:^id{
-    return [image applyBlurWithRadius:5 tintColor:[UIColor colorWithRed:1.0 green:0 blue:0 alpha:0.4] saturationDeltaFactor:0.1 maskImage:image];
+    return [image applyBlurWithRadius:5 tintColor:[UIColor colorWithRed:0.1 green:0 blue:1.0 alpha:0.4] saturationDeltaFactor:0.1 maskImage:image];
   } start:^{
     [weakSelf updateProcessedList];
   } complete:^(UIImage*image){

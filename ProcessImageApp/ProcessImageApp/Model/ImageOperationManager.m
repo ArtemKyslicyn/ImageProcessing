@@ -35,6 +35,7 @@
         ImageOperation *operation = [ImageOperation new];
         operation.filePath = path;
         operation.isProcessed = YES;
+        operation.image = [UIImage imageWithContentsOfFile:path];
         [self.imageOperationsArrray addObject:operation];
     }
 }

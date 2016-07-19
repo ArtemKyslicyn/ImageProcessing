@@ -8,6 +8,8 @@
 
 #import "ImagesFileManager.h"
 #import "Helper.h"
+#import  <ImageIO/ImageIO.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
 NSString * const kProcessedImagesFolder = @"/ProcessedImages";
 
@@ -55,9 +57,38 @@ NSString * const kProcessedImagesFolder = @"/ProcessedImages";
     
     NSString *filename = [NSString stringWithFormat:@"%@.png", [Helper timeStamp]];
     NSString *filePath = [dataPath stringByAppendingPathComponent:filename];
+  NSData * data = UIImagePNGRepresentation(image);
+  [data writeToFile:filePath atomically:YES];
+  NSMutableDictionary *mutableMetadata = [[NSMutableDictionary alloc] init];
+  [mutableMetadata setObject:@"addd" forKey:(NSString *)kCGImagePropertyTIFFModel];
+  [mutableMetadata setObject:@"addd" forKey:(NSString *)kCGImagePropertyExifFocalLength];
+  [mutableMetadata setObject:@"addd" forKey:(NSString *)kCGImagePropertyExifDateTimeDigitized];
+  [mutableMetadata setObject:@"addd" forKey:(NSString *)kCGImagePropertyExifISOSpeedRatings];
+  [mutableMetadata setObject:@"addd" forKey:(NSString *)kCGImagePropertyExifDateTimeDigitized];
+  
+  
+  [mutableMetadata setObject:@(1.0) forKey:(__bridge NSString *)kCGImageDestinationLossyCompressionQuality];
+  
+  
+  // Create an image destination.
+  CGImageDestinationRef imageDestination = CGImageDestinationCreateWithURL((__bridge CFURLRef)[NSURL fileURLWithPath:filePath], kUTTypeJPEG , 1, NULL);
+  
+  
+  // Add your image to the destination.
+  CGImageDestinationAddImage(imageDestination, image.CGImage, (__bridge CFDictionaryRef)mutableMetadata);
+  
+  // Finalize the destination.
+  if (CGImageDestinationFinalize(imageDestination) == NO) {
     
-    [UIImagePNGRepresentation(image) writeToFile:filePath atomically:YES];
-    return filePath;
+    // Handle failure.
+    NSLog(@"Error -> failed to finalize the image.");
+  }
+  
+  CFRelease(imageDestination);
+  
+ 
+
+  return filePath;
 }
 
 + (BOOL)removeProcessedImageByPath:(NSString *)path

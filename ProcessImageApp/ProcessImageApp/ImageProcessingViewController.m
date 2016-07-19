@@ -13,7 +13,7 @@
 #import "ImagesFileManager.h"
 #import "ProcessImageTableViewCell.h"
 #import "UIImage+Effects.h"
-
+#import "ImageExiffDataObject.h"
 const NSInteger kAddImageActionSheet = 1;
 const NSInteger kImageOperationActionSheet = 2;
 
@@ -191,6 +191,19 @@ const NSInteger kImageOperationActionSheet = 2;
         NSArray* rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
         [weakSelf.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
     }];
+}
+
+- (IBAction)exifAction:(id)sender {
+   ImageExiffDataObject * object = [[ImageExiffDataObject alloc]init];
+   [object extractExifDataInObjectFromImage:self.imageView.image];
+  NSString * string = [NSString stringWithFormat:@"camera %@ \n  focalLength %@ \n   rawShutterSpeed %@ \n aperture %@ \n  exifISOSpeed %@ \n taken %@ ",object.cameraString,object.focalLength,object.rawShutterSpeed,object.aperture,object.exifISOSpeed,object.taken];
+                      
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"EXIF", @"")
+                                                  message:string
+                                                 delegate:self
+                                        cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
+                                        otherButtonTitles: nil];
+  [alert show];
 }
 
 - (IBAction)blurAction:(id)sender {

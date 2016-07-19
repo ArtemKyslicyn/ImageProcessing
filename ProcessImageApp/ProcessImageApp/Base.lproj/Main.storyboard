@@ -96,6 +96,13 @@
                                     <action selector="blurAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="LoC-LY-RUb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ji7-VQ-hsc">
+                                <rect key="frame" x="230" y="150" width="30" height="30"/>
+                                <state key="normal" title="Exif"/>
+                                <connections>
+                                    <action selector="exifAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kzO-Ah-RuE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>

@@ -37,6 +37,7 @@
 		6AFCB6C01D3CB50A00D1B16C /* LauchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AFCB6BF1D3CB50A00D1B16C /* LauchScreen.storyboard */; };
 		6AFCB6C21D3CB90800D1B16C /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFCB6C11D3CB90800D1B16C /* CoreImage.framework */; };
 		6AFCB6C41D3CB9BF00D1B16C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFCB6C31D3CB9BF00D1B16C /* Accelerate.framework */; };
+		6AFCB6C81D3E1BC500D1B16C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFCB6C71D3E1BC400D1B16C /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		6AFCB6BF1D3CB50A00D1B16C /* LauchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LauchScreen.storyboard; sourceTree = "<group>"; };
 		6AFCB6C11D3CB90800D1B16C /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		6AFCB6C31D3CB9BF00D1B16C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		6AFCB6C71D3E1BC400D1B16C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AFCB6C81D3E1BC500D1B16C /* MobileCoreServices.framework in Frameworks */,
 				6AFCB6C41D3CB9BF00D1B16C /* Accelerate.framework in Frameworks */,
 				6AFCB6C21D3CB90800D1B16C /* CoreImage.framework in Frameworks */,
 				6A3EA6FA19BF39BD00EF2725 /* ImageIO.framework in Frameworks */,
@@ -148,6 +151,7 @@
 		6A2D4B7319BA08F800C052E9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6AFCB6C71D3E1BC400D1B16C /* MobileCoreServices.framework */,
 				6AFCB6C31D3CB9BF00D1B16C /* Accelerate.framework */,
 				6AFCB6C11D3CB90800D1B16C /* CoreImage.framework */,
 				6A3EA6F919BF39BD00EF2725 /* ImageIO.framework */,

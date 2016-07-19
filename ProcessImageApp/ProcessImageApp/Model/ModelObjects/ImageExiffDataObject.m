@@ -17,8 +17,10 @@
     CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef)jpeg, NULL);
    // CFDictionaryRef imageMetaData = CGImageSourceCopyPropertiesAtIndex(source,0,NULL);
     NSDictionary *myMetadata = (__bridge NSDictionary *) CGImageSourceCopyPropertiesAtIndex(source,0,NULL);
+   NSLog(@"meta %@",myMetadata);
     NSDictionary *exifDic = [myMetadata objectForKey:(NSString *)kCGImagePropertyExifDictionary];
-    NSDictionary *tiffDic = [myMetadata objectForKey:(NSString *)kCGImagePropertyTIFFDictionary];
+    NSDictionary *tiffDic = [exifDic objectForKey:(NSString *)kCGImagePropertyTIFFDictionary];
+    NSLog(@"tiff %@",tiffDic);
     NSLog(@"exifDic properties: %@", myMetadata); //all data
     float rawShutterSpeed = [[exifDic objectForKey:(NSString *)kCGImagePropertyExifExposureTime] floatValue];
     int decShutterSpeed = (1 / rawShutterSpeed);
@@ -29,6 +31,13 @@
     NSNumber *ExifISOSpeed  = [[exifDic objectForKey:(NSString*)kCGImagePropertyExifISOSpeedRatings] objectAtIndex:0];
     NSLog(@"ISO %ld",(long)[ExifISOSpeed integerValue]);
     NSLog(@"Taken %@",[exifDic objectForKey:(NSString*)kCGImagePropertyExifDateTimeDigitized]);
+  self.cameraString = [tiffDic objectForKey:(NSString *)kCGImagePropertyTIFFModel];
+  self.focalLength = [exifDic objectForKey:(NSString *)kCGImagePropertyExifFocalLength];
+  self.shaterSpeed =  [NSString stringWithFormat:@"1/%d", decShutterSpeed];
+  self.rawShutterSpeed = [[exifDic objectForKey:(NSString *)kCGImagePropertyExifExposureTime] stringValue];
+  self.aperture = [exifDic objectForKey:(NSString *)kCGImagePropertyExifFNumber];
+  self.exifISOSpeed = [ExifISOSpeed stringValue];
+  self.taken = [[exifDic objectForKey:(NSString *)kCGImagePropertyExifExposureTime] stringValue];
 
 }
 

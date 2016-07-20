@@ -196,8 +196,9 @@ const NSInteger kImageOperationActionSheet = 2;
 - (IBAction)exifAction:(id)sender {
    ImageExiffDataObject * object = [[ImageExiffDataObject alloc]init];
    [object extractExifDataInObjectFromImage:self.imageView.image];
-  NSString * string = [NSString stringWithFormat:@"camera %@ \n  focalLength %@ \n   rawShutterSpeed %@ \n aperture %@ \n  exifISOSpeed %@ \n taken %@ ",object.cameraString,object.focalLength,object.rawShutterSpeed,object.aperture,object.exifISOSpeed,object.taken];
-                      
+   NSString * string = [NSString stringWithFormat:@" width %@ \n  height %@ \n depth %@ ",object.pixelWidth,object.pixelHeight,object.depth];
+//  NSString * string = [NSString stringWithFormat:@"camera %@ \n  focalLength %@ \n   rawShutterSpeed %@ \n aperture %@ \n  exifISOSpeed %@ \n taken %@ ",object.cameraString,object.focalLength,object.rawShutterSpeed,object.aperture,object.exifISOSpeed,object.taken];
+  
   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"EXIF", @"")
                                                   message:string
                                                  delegate:self
@@ -282,10 +283,11 @@ const NSInteger kImageOperationActionSheet = 2;
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    ImageOperation *imageOperation = [self.imagesArray objectAtIndex:_selectedImageIndex];
+  
     __weak typeof(self) weakSelf = self;
     switch (buttonIndex) {
         case 1: {
+          ImageOperation *imageOperation = [self.imagesArray objectAtIndex:_selectedImageIndex];
             [[Engine sharedManager].operationsManager deleteImageProcessedOperation:imageOperation complete: ^{
                 [weakSelf updateProcessedList];
             } fail: ^{
@@ -294,6 +296,7 @@ const NSInteger kImageOperationActionSheet = 2;
             break;
             
         case 2: {
+          ImageOperation *imageOperation = [self.imagesArray objectAtIndex:_selectedImageIndex];
             [imageOperation processedImage: ^(UIImage *image) {
                 [weakSelf saveToLibarayImage:image];
             }];
@@ -302,6 +305,7 @@ const NSInteger kImageOperationActionSheet = 2;
             break;
             
         case 3: {
+          ImageOperation *imageOperation = [self.imagesArray objectAtIndex:_selectedImageIndex];
             [imageOperation processedImage: ^(UIImage *image) {
                 [weakSelf procesAgainImage:image];
             }];
@@ -347,7 +351,6 @@ const NSInteger kImageOperationActionSheet = 2;
         
         DownloadImageViewController *dowbloadViewController = (DownloadImageViewController *) segue.destinationViewController;
       self.definesPresentationContext = YES; //self is presenting view controller
-     // presentedController.view.backgroundColor = [UIColor clearColor];      presentedController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         [dowbloadViewController setDelegate:self];
     }
     

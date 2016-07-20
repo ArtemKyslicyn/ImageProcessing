@@ -27,6 +27,7 @@
   self.providesPresentationContextTransitionStyle = YES;
   self.definesPresentationContext = YES;
   self.view.backgroundColor = [UIColor clearColor];
+  self.progressView.progress = 0;
   
 }
 - (IBAction)okAction:(id)sender {

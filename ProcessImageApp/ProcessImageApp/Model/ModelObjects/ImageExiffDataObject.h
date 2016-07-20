@@ -10,13 +10,17 @@
 
 @interface ImageExiffDataObject : NSObject
 
-@property (nonatomic,assign) NSString * cameraString;
-@property (nonatomic,assign) NSString * focalLength;
-@property (nonatomic,assign) NSString * shaterSpeed;
-@property (nonatomic,assign) NSString * rawShutterSpeed;
-@property (nonatomic,assign) NSString * aperture;
-@property (nonatomic,assign) NSString * exifISOSpeed;
-@property (nonatomic,assign) NSString * taken;
+@property (nonatomic,strong) NSString * cameraString;
+@property (nonatomic,strong) NSString * focalLength;
+@property (nonatomic,strong) NSString * shaterSpeed;
+@property (nonatomic,strong) NSString * rawShutterSpeed;
+@property (nonatomic,strong) NSString * aperture;
+@property (nonatomic,strong) NSString * exifISOSpeed;
+@property (nonatomic,strong) NSString * taken;
+@property (nonatomic,strong) NSString * сolorModel;
+@property (nonatomic,strong) NSString * depth;
+@property (nonatomic,strong) NSString * pixelHeight;
+@property (nonatomic,strong) NSString * pixelWidth;
 
 -(void)extractExifDataInObjectFromImage:(UIImage*)image;
 

@@ -38,7 +38,10 @@
   self.aperture = [exifDic objectForKey:(NSString *)kCGImagePropertyExifFNumber];
   self.exifISOSpeed = [ExifISOSpeed stringValue];
   self.taken = [[exifDic objectForKey:(NSString *)kCGImagePropertyExifExposureTime] stringValue];
-
+  self.depth = [[myMetadata objectForKey:@"Depth"] stringValue];
+   self.pixelWidth = [[myMetadata objectForKey:(NSString *)kCGImagePropertyPixelWidth] stringValue];
+   self.pixelHeight = [[myMetadata objectForKey:(NSString *)kCGImagePropertyPixelHeight] stringValue];
+  
 }
 
 

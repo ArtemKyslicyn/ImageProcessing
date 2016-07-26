@@ -197,7 +197,7 @@ const NSInteger kImageOperationActionSheet = 2;
    ImageExiffDataObject * object = [[ImageExiffDataObject alloc]init];
    [object extractExifDataInObjectFromImage:self.imageView.image];
    NSString * string = [NSString stringWithFormat:@" width %@ \n  height %@ \n depth %@ ",object.pixelWidth,object.pixelHeight,object.depth];
-//  NSString * string = [NSString stringWithFormat:@"camera %@ \n  focalLength %@ \n   rawShutterSpeed %@ \n aperture %@ \n  exifISOSpeed %@ \n taken %@ ",object.cameraString,object.focalLength,object.rawShutterSpeed,object.aperture,object.exifISOSpeed,object.taken];
+
   
   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"EXIF", @"")
                                                   message:string

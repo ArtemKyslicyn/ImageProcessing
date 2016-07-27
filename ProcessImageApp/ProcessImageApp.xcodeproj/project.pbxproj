@@ -34,6 +34,11 @@
 		6ABE7D5719BB930300FEA502 /* Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABE7D5619BB930300FEA502 /* Engine.m */; };
 		6ABE7D5A19BCFF4600FEA502 /* DownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABE7D5919BCFF4600FEA502 /* DownloadOperation.m */; };
 		6AD97BE31D48606100211EB9 /* NSString+Date.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD97BE21D48606100211EB9 /* NSString+Date.m */; };
+		6AD97BE61D48B8ED00211EB9 /* ImageProcessingTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD97BE51D48B8ED00211EB9 /* ImageProcessingTableDataSource.m */; };
+		6AD97BE91D48C21500211EB9 /* AlertOperationDelegationObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD97BE81D48C21500211EB9 /* AlertOperationDelegationObject.m */; };
+		6AD97BEC1D48C30E00211EB9 /* BaseFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD97BEB1D48C30E00211EB9 /* BaseFilter.m */; };
+		6AD97BF01D48C47900211EB9 /* ImagePickerProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD97BEF1D48C47900211EB9 /* ImagePickerProvider.m */; };
+		6AD97BF81D48DB7700211EB9 /* FillterProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD97BF71D48DB7700211EB9 /* FillterProcessor.m */; };
 		6AFCB6C01D3CB50A00D1B16C /* LauchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AFCB6BF1D3CB50A00D1B16C /* LauchScreen.storyboard */; };
 		6AFCB6C21D3CB90800D1B16C /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFCB6C11D3CB90800D1B16C /* CoreImage.framework */; };
 		6AFCB6C41D3CB9BF00D1B16C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFCB6C31D3CB9BF00D1B16C /* Accelerate.framework */; };
@@ -94,6 +99,16 @@
 		6ABE7D5919BCFF4600FEA502 /* DownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DownloadOperation.m; path = Model/ModelObjects/DownloadOperation.m; sourceTree = "<group>"; };
 		6AD97BE11D48606000211EB9 /* NSString+Date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Date.h"; sourceTree = "<group>"; };
 		6AD97BE21D48606100211EB9 /* NSString+Date.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Date.m"; sourceTree = "<group>"; };
+		6AD97BE41D48B8ED00211EB9 /* ImageProcessingTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcessingTableDataSource.h; sourceTree = "<group>"; };
+		6AD97BE51D48B8ED00211EB9 /* ImageProcessingTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageProcessingTableDataSource.m; sourceTree = "<group>"; };
+		6AD97BE71D48C21500211EB9 /* AlertOperationDelegationObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertOperationDelegationObject.h; sourceTree = "<group>"; };
+		6AD97BE81D48C21500211EB9 /* AlertOperationDelegationObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertOperationDelegationObject.m; sourceTree = "<group>"; };
+		6AD97BEA1D48C30E00211EB9 /* BaseFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseFilter.h; sourceTree = "<group>"; };
+		6AD97BEB1D48C30E00211EB9 /* BaseFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseFilter.m; sourceTree = "<group>"; };
+		6AD97BEE1D48C47900211EB9 /* ImagePickerProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerProvider.h; sourceTree = "<group>"; };
+		6AD97BEF1D48C47900211EB9 /* ImagePickerProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerProvider.m; sourceTree = "<group>"; };
+		6AD97BF61D48DB7700211EB9 /* FillterProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FillterProcessor.h; sourceTree = "<group>"; };
+		6AD97BF71D48DB7700211EB9 /* FillterProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FillterProcessor.m; sourceTree = "<group>"; };
 		6AFCB6BF1D3CB50A00D1B16C /* LauchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LauchScreen.storyboard; sourceTree = "<group>"; };
 		6AFCB6C11D3CB90800D1B16C /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		6AFCB6C31D3CB9BF00D1B16C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -229,10 +244,8 @@
 		6AB9200019BA21F600B8E044 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6A2D4B8919BA08F800C052E9 /* ImageProcessingViewController.h */,
-				6A2D4B8A19BA08F800C052E9 /* ImageProcessingViewController.m */,
-				6AB9201519BB170000B8E044 /* DownloadImageViewController.h */,
-				6AB9201619BB170000B8E044 /* DownloadImageViewController.m */,
+				6AD97BF31D48C71200211EB9 /* DownloadImageViewController */,
+				6AD97BF21D48C6F900211EB9 /* ProccessingViewController */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -276,6 +289,66 @@
 				6AB9202619BB2EDA00B8E044 /* Cells */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		6AD97BED1D48C39200211EB9 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				6AD97BEA1D48C30E00211EB9 /* BaseFilter.h */,
+				6AD97BEB1D48C30E00211EB9 /* BaseFilter.m */,
+			);
+			name = Filter;
+			sourceTree = "<group>";
+		};
+		6AD97BF11D48C6E000211EB9 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				6AD97BE41D48B8ED00211EB9 /* ImageProcessingTableDataSource.h */,
+				6AD97BE51D48B8ED00211EB9 /* ImageProcessingTableDataSource.m */,
+				6AD97BE71D48C21500211EB9 /* AlertOperationDelegationObject.h */,
+				6AD97BE81D48C21500211EB9 /* AlertOperationDelegationObject.m */,
+				6AD97BEE1D48C47900211EB9 /* ImagePickerProvider.h */,
+				6AD97BEF1D48C47900211EB9 /* ImagePickerProvider.m */,
+			);
+			name = Providers;
+			sourceTree = "<group>";
+		};
+		6AD97BF21D48C6F900211EB9 /* ProccessingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6AD97BF51D48DB5000211EB9 /* FillterProcessor */,
+				6AD97BF41D48CF0100211EB9 /* Iteractors */,
+				6AD97BF11D48C6E000211EB9 /* Providers */,
+				6A2D4B8919BA08F800C052E9 /* ImageProcessingViewController.h */,
+				6A2D4B8A19BA08F800C052E9 /* ImageProcessingViewController.m */,
+			);
+			name = ProccessingViewController;
+			sourceTree = "<group>";
+		};
+		6AD97BF31D48C71200211EB9 /* DownloadImageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6AB9201519BB170000B8E044 /* DownloadImageViewController.h */,
+				6AB9201619BB170000B8E044 /* DownloadImageViewController.m */,
+			);
+			name = DownloadImageViewController;
+			sourceTree = "<group>";
+		};
+		6AD97BF41D48CF0100211EB9 /* Iteractors */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Iteractors;
+			sourceTree = "<group>";
+		};
+		6AD97BF51D48DB5000211EB9 /* FillterProcessor */ = {
+			isa = PBXGroup;
+			children = (
+				6AD97BED1D48C39200211EB9 /* Filter */,
+				6AD97BF61D48DB7700211EB9 /* FillterProcessor.h */,
+				6AD97BF71D48DB7700211EB9 /* FillterProcessor.m */,
+			);
+			name = FillterProcessor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,17 +451,22 @@
 			files = (
 				6AB9200419BA5FC600B8E044 /* UIImage+Effects.m in Sources */,
 				6AB9201E19BB2CF600B8E044 /* ImageOperation.m in Sources */,
+				6AD97BF01D48C47900211EB9 /* ImagePickerProvider.m in Sources */,
 				6A2D4B8B19BA08F800C052E9 /* ImageProcessingViewController.m in Sources */,
 				6ABE7D5A19BCFF4600FEA502 /* DownloadOperation.m in Sources */,
 				6AB9200719BB0DB600B8E044 /* ImageDownloader.m in Sources */,
+				6AD97BEC1D48C30E00211EB9 /* BaseFilter.m in Sources */,
 				6A3EA6F819BF382600EF2725 /* ImageExiffDataObject.m in Sources */,
+				6AD97BE61D48B8ED00211EB9 /* ImageProcessingTableDataSource.m in Sources */,
 				6ABE7D5719BB930300FEA502 /* Engine.m in Sources */,
 				6ABE7D4F19BB38FF00FEA502 /* ProcessImageTableViewCell.m in Sources */,
 				6A2D4B8519BA08F800C052E9 /* AppDelegate.m in Sources */,
 				6AD97BE31D48606100211EB9 /* NSString+Date.m in Sources */,
 				6AB9201719BB170000B8E044 /* DownloadImageViewController.m in Sources */,
 				6AB9200A19BB0F2B00B8E044 /* ImagesFileManager.m in Sources */,
+				6AD97BF81D48DB7700211EB9 /* FillterProcessor.m in Sources */,
 				6ABE7D5219BB6B0200FEA502 /* ImageOperationManager.m in Sources */,
+				6AD97BE91D48C21500211EB9 /* AlertOperationDelegationObject.m in Sources */,
 				6A2D4B8119BA08F800C052E9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

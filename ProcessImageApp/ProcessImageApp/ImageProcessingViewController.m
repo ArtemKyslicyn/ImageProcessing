@@ -14,6 +14,8 @@
 #import "ProcessImageTableViewCell.h"
 #import "UIImage+Effects.h"
 #import "ImageExiffDataObject.h"
+#import "ImageProcessingTableDataSource.h"
+
 const NSInteger kAddImageActionSheet = 1;
 const NSInteger kImageOperationActionSheet = 2;
 
@@ -24,17 +26,47 @@ const NSInteger kImageOperationActionSheet = 2;
 @property (nonatomic, assign) NSInteger selectedImageIndex;
 
 @property (nonatomic, strong) ImageOperationManager *operationManager;
+@property (nonatomic, strong) ImageProcessingTableDataSource * tableDatasource;
 
 @end
 
 
 @implementation ImageProcessingViewController
 
-
+- (id)initWithCoder:(NSCoder *)decoder{
+  self = [super initWithCoder:decoder];
+  if (self ){
+     self.engine  = [[Engine alloc] init];
+     self.tableDatasource = [[ImageProcessingTableDataSource alloc] init];
+  }
+  return  self;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+  
+    __weak typeof(self) weakSelf = self;
     [self setModalPresentationStyle:UIModalPresentationCurrentContext];
+    self.tableDatasource.reloadBlock = ^{
+      [weakSelf updateProcessedList];
+    };
+
+   self.tableView.delegate =  self.tableDatasource;
+   self.tableView.dataSource = self.tableDatasource;
+  
+    self.tableDatasource.selectedRow = ^(NSInteger index){
+      weakSelf.selectedImageIndex = index;
+      
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Operation", @"")
+                                                      message:NSLocalizedString(@"What are you want to do with result", @"")
+                                                     delegate:weakSelf
+                                            cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
+                                            otherButtonTitles:NSLocalizedString(@"Delete", @""),
+                            NSLocalizedString(@"Save To Library", @""),
+                            NSLocalizedString(@"Process Again", @""), nil];
+      [alert show];
+
+    };
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -46,56 +78,8 @@ const NSInteger kImageOperationActionSheet = 2;
 - (void)updateProcessedList
 {
     self.imagesArray  = self.engine.operationsManager.imageOperationsArrray;
-    
+    self.tableDatasource.imagesArray = self.engine.operationsManager.imageOperationsArrray;
     [self.tableView reloadData];
-}
-
-#pragma mark - TableView delegate and datasource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.imagesArray.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *cellIdentifier = @"cellIdentifier";
-    
-    ProcessImageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier
-                                                                      forIndexPath:indexPath];
-    
-    ImageOperation *imageOperation = [self.imagesArray objectAtIndex:indexPath.row];
-    
-    cell.processedImageView.image = nil;
-    cell.progressView.hidden = imageOperation.isProcessed;
-    cell.progressView.progress = imageOperation.progress;
-    cell.processedImageView.image = imageOperation.image;
-    [imageOperation processedImage: ^(UIImage *image) {
-        cell.processedImageView.image = image;
-        [self.tableView reloadData];
-    }];
-    
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Yes  i understend thats is not  is best solution
-    self.selectedImageIndex = indexPath.row;
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Operation", @"")
-                                                    message:NSLocalizedString(@"What are you want to do with result", @"")
-                                                   delegate:self
-                                          cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
-                                          otherButtonTitles:NSLocalizedString(@"Delete", @""),
-                                                            NSLocalizedString(@"Save To Library", @""),
-                                                            NSLocalizedString(@"Process Again", @""), nil];
-    [alert show];
 }
 
 #pragma mark - Actions

@@ -17,14 +17,14 @@ static id _sharedInstance;
 
 @implementation Engine
 
-+ (Engine *)sharedManager
-{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedInstance = [[self alloc] init];
-    });
-    return _sharedInstance;
-}
+//+ (Engine *)sharedManager
+//{
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        _sharedInstance = [[self alloc] init];
+//    });
+//    return _sharedInstance;
+//}
 
 - (id)init
 {
@@ -35,29 +35,29 @@ static id _sharedInstance;
     return self;
 }
 
-+ (id)allocWithZone:(NSZone *)zone
-{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedInstance = nil;
-        _sharedInstance = [super allocWithZone:zone];
-    });
-    return _sharedInstance;
-}
-
-- (id)copyWithZone:(NSZone *)zone
-{
-    return self;
-}
-
-+ (id)new
-{
-    NSException *exception = [[NSException alloc] initWithName:kAKException
-                                                        reason:kAKExceptionReason
-                                                      userInfo:nil];
-    [exception raise];
-    
-    return nil;
-}
+//+ (id)allocWithZone:(NSZone *)zone
+//{
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        _sharedInstance = nil;
+//        _sharedInstance = [super allocWithZone:zone];
+//    });
+//    return _sharedInstance;
+//}
+//
+//- (id)copyWithZone:(NSZone *)zone
+//{
+//    return self;
+//}
+//
+//+ (id)new
+//{
+//    NSException *exception = [[NSException alloc] initWithName:kAKException
+//                                                        reason:kAKExceptionReason
+//                                                      userInfo:nil];
+//    [exception raise];
+//    
+//    return nil;
+//}
 
 @end

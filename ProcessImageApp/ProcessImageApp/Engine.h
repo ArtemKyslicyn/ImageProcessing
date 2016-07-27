@@ -14,6 +14,6 @@
 @property (nonatomic, strong)  ImageOperationManager *operationsManager;
 @property (nonatomic, strong)  ImageDownloader *downloadManager;
 
-+ (Engine *)sharedManager;
+//+ (Engine *)sharedManager;
 
 @end

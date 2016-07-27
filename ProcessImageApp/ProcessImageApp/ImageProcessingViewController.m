@@ -45,7 +45,7 @@ const NSInteger kImageOperationActionSheet = 2;
 
 - (void)updateProcessedList
 {
-    self.imagesArray  = [Engine sharedManager].operationsManager.imageOperationsArrray;
+    self.imagesArray  = self.engine.operationsManager.imageOperationsArrray;
     
     [self.tableView reloadData];
 }
@@ -129,13 +129,13 @@ const NSInteger kImageOperationActionSheet = 2;
     
     __weak typeof(self) weakSelf = self;
     
-    [[Engine sharedManager].operationsManager addImageOperationForImage:image operation:^id{
+    [self.engine.operationsManager addImageOperationForImage:image operation:^id{
         return [image rotateImageForDegree:90];
     } start:^{
         [weakSelf updateProcessedList];
     } complete:^(UIImage*image){
         [weakSelf updateProcessedList];
-         self.imageView.image = image;
+         weakSelf.imageView.image = image;
     }
     progress:^(ImageOperation * imageOperation){
         //[weakSelf updateProcessedList];
@@ -152,13 +152,13 @@ const NSInteger kImageOperationActionSheet = 2;
     
     __weak typeof(self) weakSelf = self;
     
-    [[Engine sharedManager].operationsManager addImageOperationForImage:image operation:^id{
+   [self.engine.operationsManager addImageOperationForImage:image operation:^id{
         return [image horizontalMirror];
     } start:^{
         [weakSelf updateProcessedList];
     } complete:^(UIImage*image){
         [weakSelf updateProcessedList];
-         self.imageView.image = image;
+         weakSelf.imageView.image = image;
     }
     
     progress:^(ImageOperation * imageOperation){
@@ -176,12 +176,12 @@ const NSInteger kImageOperationActionSheet = 2;
     
     __weak typeof(self) weakSelf = self;
     
-    [[Engine sharedManager].operationsManager addImageOperationForImage:image operation:^id{
+    [self.engine.operationsManager addImageOperationForImage:image operation:^id{
         return [image invertedImage];
     } start:^{
         [weakSelf updateProcessedList];
     } complete:^(UIImage*image){
-        [self updateProcessedList];
+        [weakSelf updateProcessedList];
         weakSelf.imageView.image = image;
     }
      
@@ -212,13 +212,13 @@ const NSInteger kImageOperationActionSheet = 2;
   
   __weak typeof(self) weakSelf = self;
   
-  [[Engine sharedManager].operationsManager addImageOperationForImage:image operation:^id{
+  [self.engine.operationsManager addImageOperationForImage:image operation:^id{
     return [image applyBlurWithRadius:5 tintColor:[UIColor colorWithRed:0.1 green:0 blue:1.0 alpha:0.4] saturationDeltaFactor:0.1 maskImage:image];
   } start:^{
     [weakSelf updateProcessedList];
   } complete:^(UIImage*image){
     [weakSelf updateProcessedList];
-    self.imageView.image = image;
+    weakSelf.imageView.image = image;
   }
           progress:^(ImageOperation * imageOperation){
             
@@ -288,7 +288,7 @@ const NSInteger kImageOperationActionSheet = 2;
     switch (buttonIndex) {
         case 1: {
           ImageOperation *imageOperation = [self.imagesArray objectAtIndex:_selectedImageIndex];
-            [[Engine sharedManager].operationsManager deleteImageProcessedOperation:imageOperation complete: ^{
+            [self.engine.operationsManager deleteImageProcessedOperation:imageOperation complete: ^{
                 [weakSelf updateProcessedList];
             } fail: ^{
             }];
@@ -350,6 +350,7 @@ const NSInteger kImageOperationActionSheet = 2;
     if ([segue.identifier isEqualToString:@"modalDownload"]) {
         
         DownloadImageViewController *dowbloadViewController = (DownloadImageViewController *) segue.destinationViewController;
+      dowbloadViewController.engine =  self.engine;
       self.definesPresentationContext = YES; //self is presenting view controller
         [dowbloadViewController setDelegate:self];
     }

@@ -23,4 +23,6 @@
 @property (nonatomic, weak) id <DownloadImageViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 
+@property (nonatomic, strong) Engine * engine;
+
 @end

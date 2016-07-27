@@ -7,7 +7,7 @@
 //
 
 #import "ImagesFileManager.h"
-#import "Helper.h"
+#import "NSString+Date.h"
 #import  <ImageIO/ImageIO.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
@@ -55,7 +55,7 @@ NSString * const kProcessedImagesFolder = @"/ProcessedImages";
     if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath])
         [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:&error];
     
-    NSString *filename = [NSString stringWithFormat:@"%@.png", [Helper timeStamp]];
+    NSString *filename = [NSString stringWithFormat:@"%@.png", [NSString timeStamp]];
     NSString *filePath = [dataPath stringByAppendingPathComponent:filename];
   NSData * data = UIImagePNGRepresentation(image);
   [data writeToFile:filePath atomically:YES];

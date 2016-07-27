@@ -7,7 +7,7 @@
 //
 
 #import "ImageOperation.h"
-#import "Helper.h"
+
 #import "ImagesFileManager.h"
 
 @interface ImageOperation()

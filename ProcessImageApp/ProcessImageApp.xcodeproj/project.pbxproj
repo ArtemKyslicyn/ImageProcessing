@@ -39,6 +39,11 @@
 		6AD97BEC1D48C30E00211EB9 /* BaseFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD97BEB1D48C30E00211EB9 /* BaseFilter.m */; };
 		6AD97BF01D48C47900211EB9 /* ImagePickerProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD97BEF1D48C47900211EB9 /* ImagePickerProvider.m */; };
 		6AD97BF81D48DB7700211EB9 /* FillterProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD97BF71D48DB7700211EB9 /* FillterProcessor.m */; };
+		6AD97C011D4A498B00211EB9 /* BlurFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD97C001D4A498B00211EB9 /* BlurFilter.m */; };
+		6AD97C051D4A4CDF00211EB9 /* InvertFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD97C041D4A4CDF00211EB9 /* InvertFilter.m */; };
+		6AD97C081D4A4CF100211EB9 /* MirrorFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD97C071D4A4CF100211EB9 /* MirrorFilter.m */; };
+		6AD97C0B1D4A4D1600211EB9 /* RotateFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD97C0A1D4A4D1600211EB9 /* RotateFilter.m */; };
+		6AD97C0E1D4A586F00211EB9 /* NegatieFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD97C0D1D4A586F00211EB9 /* NegatieFilter.m */; };
 		6AFCB6C01D3CB50A00D1B16C /* LauchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AFCB6BF1D3CB50A00D1B16C /* LauchScreen.storyboard */; };
 		6AFCB6C21D3CB90800D1B16C /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFCB6C11D3CB90800D1B16C /* CoreImage.framework */; };
 		6AFCB6C41D3CB9BF00D1B16C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFCB6C31D3CB9BF00D1B16C /* Accelerate.framework */; };
@@ -109,6 +114,16 @@
 		6AD97BEF1D48C47900211EB9 /* ImagePickerProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerProvider.m; sourceTree = "<group>"; };
 		6AD97BF61D48DB7700211EB9 /* FillterProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FillterProcessor.h; sourceTree = "<group>"; };
 		6AD97BF71D48DB7700211EB9 /* FillterProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FillterProcessor.m; sourceTree = "<group>"; };
+		6AD97BFF1D4A498B00211EB9 /* BlurFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurFilter.h; sourceTree = "<group>"; };
+		6AD97C001D4A498B00211EB9 /* BlurFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurFilter.m; sourceTree = "<group>"; };
+		6AD97C031D4A4CDF00211EB9 /* InvertFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvertFilter.h; sourceTree = "<group>"; };
+		6AD97C041D4A4CDF00211EB9 /* InvertFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvertFilter.m; sourceTree = "<group>"; };
+		6AD97C061D4A4CF100211EB9 /* MirrorFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MirrorFilter.h; sourceTree = "<group>"; };
+		6AD97C071D4A4CF100211EB9 /* MirrorFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MirrorFilter.m; sourceTree = "<group>"; };
+		6AD97C091D4A4D1600211EB9 /* RotateFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateFilter.h; sourceTree = "<group>"; };
+		6AD97C0A1D4A4D1600211EB9 /* RotateFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateFilter.m; sourceTree = "<group>"; };
+		6AD97C0C1D4A586F00211EB9 /* NegatieFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NegatieFilter.h; sourceTree = "<group>"; };
+		6AD97C0D1D4A586F00211EB9 /* NegatieFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NegatieFilter.m; sourceTree = "<group>"; };
 		6AFCB6BF1D3CB50A00D1B16C /* LauchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LauchScreen.storyboard; sourceTree = "<group>"; };
 		6AFCB6C11D3CB90800D1B16C /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		6AFCB6C31D3CB9BF00D1B16C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -296,6 +311,16 @@
 			children = (
 				6AD97BEA1D48C30E00211EB9 /* BaseFilter.h */,
 				6AD97BEB1D48C30E00211EB9 /* BaseFilter.m */,
+				6AD97BFF1D4A498B00211EB9 /* BlurFilter.h */,
+				6AD97C001D4A498B00211EB9 /* BlurFilter.m */,
+				6AD97C031D4A4CDF00211EB9 /* InvertFilter.h */,
+				6AD97C041D4A4CDF00211EB9 /* InvertFilter.m */,
+				6AD97C061D4A4CF100211EB9 /* MirrorFilter.h */,
+				6AD97C071D4A4CF100211EB9 /* MirrorFilter.m */,
+				6AD97C091D4A4D1600211EB9 /* RotateFilter.h */,
+				6AD97C0A1D4A4D1600211EB9 /* RotateFilter.m */,
+				6AD97C0C1D4A586F00211EB9 /* NegatieFilter.h */,
+				6AD97C0D1D4A586F00211EB9 /* NegatieFilter.m */,
 			);
 			name = Filter;
 			sourceTree = "<group>";
@@ -449,12 +474,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AD97C081D4A4CF100211EB9 /* MirrorFilter.m in Sources */,
 				6AB9200419BA5FC600B8E044 /* UIImage+Effects.m in Sources */,
+				6AD97C0B1D4A4D1600211EB9 /* RotateFilter.m in Sources */,
 				6AB9201E19BB2CF600B8E044 /* ImageOperation.m in Sources */,
 				6AD97BF01D48C47900211EB9 /* ImagePickerProvider.m in Sources */,
+				6AD97C0E1D4A586F00211EB9 /* NegatieFilter.m in Sources */,
 				6A2D4B8B19BA08F800C052E9 /* ImageProcessingViewController.m in Sources */,
 				6ABE7D5A19BCFF4600FEA502 /* DownloadOperation.m in Sources */,
 				6AB9200719BB0DB600B8E044 /* ImageDownloader.m in Sources */,
+				6AD97C011D4A498B00211EB9 /* BlurFilter.m in Sources */,
 				6AD97BEC1D48C30E00211EB9 /* BaseFilter.m in Sources */,
 				6A3EA6F819BF382600EF2725 /* ImageExiffDataObject.m in Sources */,
 				6AD97BE61D48B8ED00211EB9 /* ImageProcessingTableDataSource.m in Sources */,
@@ -462,6 +491,7 @@
 				6ABE7D4F19BB38FF00FEA502 /* ProcessImageTableViewCell.m in Sources */,
 				6A2D4B8519BA08F800C052E9 /* AppDelegate.m in Sources */,
 				6AD97BE31D48606100211EB9 /* NSString+Date.m in Sources */,
+				6AD97C051D4A4CDF00211EB9 /* InvertFilter.m in Sources */,
 				6AB9201719BB170000B8E044 /* DownloadImageViewController.m in Sources */,
 				6AB9200A19BB0F2B00B8E044 /* ImagesFileManager.m in Sources */,
 				6AD97BF81D48DB7700211EB9 /* FillterProcessor.m in Sources */,

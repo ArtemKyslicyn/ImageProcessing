@@ -11,7 +11,7 @@
 
 @interface Engine : NSObject
 
-@property (nonatomic, strong)  ImageOperationManager *operationsManager;
+
 @property (nonatomic, strong)  ImageDownloader *downloadManager;
 
 //+ (Engine *)sharedManager;

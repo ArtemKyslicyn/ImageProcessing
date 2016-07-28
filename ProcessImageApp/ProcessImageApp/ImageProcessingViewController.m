@@ -15,6 +15,12 @@
 #import "UIImage+Effects.h"
 #import "ImageExiffDataObject.h"
 #import "ImageProcessingTableDataSource.h"
+#import "FillterProcessor.h"
+#import "BlurFilter.h"
+#import "RotateFilter.h"
+#import "InvertFilter.h"
+#import "NegatieFilter.h"
+#import "MirrorFilter.h"
 
 const NSInteger kAddImageActionSheet = 1;
 const NSInteger kImageOperationActionSheet = 2;
@@ -27,6 +33,7 @@ const NSInteger kImageOperationActionSheet = 2;
 
 @property (nonatomic, strong) ImageOperationManager *operationManager;
 @property (nonatomic, strong) ImageProcessingTableDataSource * tableDatasource;
+@property (nonatomic, strong) FillterProcessor * filterProcessor;
 
 @end
 
@@ -37,7 +44,8 @@ const NSInteger kImageOperationActionSheet = 2;
   self = [super initWithCoder:decoder];
   if (self ){
      self.engine  = [[Engine alloc] init];
-     self.tableDatasource = [[ImageProcessingTableDataSource alloc] init];
+    [self initTableViewDataSource];
+    [self initFilterProcessor];
   }
   return  self;
 }
@@ -45,29 +53,56 @@ const NSInteger kImageOperationActionSheet = 2;
 {
     [super viewDidLoad];
   
-    __weak typeof(self) weakSelf = self;
-    [self setModalPresentationStyle:UIModalPresentationCurrentContext];
-    self.tableDatasource.reloadBlock = ^{
-      [weakSelf updateProcessedList];
-    };
-
-   self.tableView.delegate =  self.tableDatasource;
-   self.tableView.dataSource = self.tableDatasource;
+  self.tableView.delegate =  self.tableDatasource;
+  self.tableView.dataSource = self.tableDatasource;
   
-    self.tableDatasource.selectedRow = ^(NSInteger index){
-      weakSelf.selectedImageIndex = index;
-      
-      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Operation", @"")
-                                                      message:NSLocalizedString(@"What are you want to do with result", @"")
-                                                     delegate:weakSelf
-                                            cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
-                                            otherButtonTitles:NSLocalizedString(@"Delete", @""),
-                            NSLocalizedString(@"Save To Library", @""),
-                            NSLocalizedString(@"Process Again", @""), nil];
-      [alert show];
-
-    };
 }
+
+-(void) initFilterProcessor{
+  self.filterProcessor  = [[FillterProcessor alloc] init];
+  
+  __weak typeof(self) weakSelf = self;
+  
+  self.filterProcessor.progressBlock = ^(ImageOperation * imageOperation){
+    //[weakSelf updateProcessedList];
+    NSUInteger row =[weakSelf.imagesArray indexOfObject:imageOperation];
+    NSIndexPath* rowToReload = [NSIndexPath indexPathForRow:row inSection:0];
+    NSArray* rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
+    [weakSelf.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
+  };
+  
+  self.filterProcessor.start = ^{
+    [weakSelf updateProcessedList];
+  };
+  
+}
+
+-(void)initTableViewDataSource{
+  
+  self.tableDatasource = [[ImageProcessingTableDataSource alloc] init];
+
+  
+   __weak typeof(self) weakSelf = self;
+  
+   self.tableDatasource.selectedRow = ^(NSInteger index){
+    weakSelf.selectedImageIndex = index;
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Operation", @"")
+                                                    message:NSLocalizedString(@"What are you want to do with result", @"")
+                                                   delegate:weakSelf
+                                          cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
+                                          otherButtonTitles:NSLocalizedString(@"Delete", @""),
+                          NSLocalizedString(@"Save To Library", @""),
+                          NSLocalizedString(@"Process Again", @""), nil];
+    [alert show];
+    
+  };
+  
+  self.tableDatasource.reloadBlock = ^{
+    [weakSelf updateProcessedList];
+  };
+}
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -77,8 +112,8 @@ const NSInteger kImageOperationActionSheet = 2;
 
 - (void)updateProcessedList
 {
-    self.imagesArray  = self.engine.operationsManager.imageOperationsArrray;
-    self.tableDatasource.imagesArray = self.engine.operationsManager.imageOperationsArrray;
+    self.imagesArray  = self.filterProcessor.operationManager.imageOperationsArrray;
+    self.tableDatasource.imagesArray = self.filterProcessor.operationManager.imageOperationsArrray;
     [self.tableView reloadData];
 }
 
@@ -109,79 +144,40 @@ const NSInteger kImageOperationActionSheet = 2;
 }
 
 - (IBAction)rotateImageAction:(id)sender {
-    UIImage * image = self.imageView.image;
-    
-    __weak typeof(self) weakSelf = self;
-    
-    [self.engine.operationsManager addImageOperationForImage:image operation:^id{
-        return [image rotateImageForDegree:90];
-    } start:^{
-        [weakSelf updateProcessedList];
-    } complete:^(UIImage*image){
-        [weakSelf updateProcessedList];
-         weakSelf.imageView.image = image;
-    }
-    progress:^(ImageOperation * imageOperation){
-        //[weakSelf updateProcessedList];
-        NSUInteger row =[weakSelf.imagesArray indexOfObject:imageOperation];
-        NSIndexPath* rowToReload = [NSIndexPath indexPathForRow:row inSection:0];
-        NSArray* rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
-        [weakSelf.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
-    }];
+  RotateFilter * filter = [[RotateFilter alloc] initWithImage:self.imageView.image rotate: 90 ];
+  [self proccesedFilter:filter];
 }
 
-- (IBAction)mirorImageAction:(id)sender
-{
-    UIImage * image = self.imageView.image;
-    
-    __weak typeof(self) weakSelf = self;
-    
-   [self.engine.operationsManager addImageOperationForImage:image operation:^id{
-        return [image horizontalMirror];
-    } start:^{
-        [weakSelf updateProcessedList];
-    } complete:^(UIImage*image){
-        [weakSelf updateProcessedList];
-         weakSelf.imageView.image = image;
-    }
-    
-    progress:^(ImageOperation * imageOperation){
-        NSUInteger row =[weakSelf.imagesArray indexOfObject:imageOperation];
-        NSIndexPath* rowToReload = [NSIndexPath indexPathForRow:row inSection:0];
-        NSArray* rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
-        [weakSelf.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
-    }];
-    
+- (IBAction)mirorImageAction:(id)sender{
+  MirrorFilter * filter = [[MirrorFilter alloc] initWithImage:self.imageView.image ];
+  [self proccesedFilter:filter];
 }
 
-- (IBAction)invertColorsImageAction:(id)sender
-{
-    UIImage * image = self.imageView.image;
-    
-    __weak typeof(self) weakSelf = self;
-    
-    [self.engine.operationsManager addImageOperationForImage:image operation:^id{
-        return [image invertedImage];
-    } start:^{
-        [weakSelf updateProcessedList];
-    } complete:^(UIImage*image){
-        [weakSelf updateProcessedList];
-        weakSelf.imageView.image = image;
-    }
-     
-    progress:^(ImageOperation * imageOperation){
-        NSUInteger row =[weakSelf.imagesArray indexOfObject:imageOperation];
-        NSIndexPath* rowToReload = [NSIndexPath indexPathForRow:row inSection:0];
-        NSArray* rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
-        [weakSelf.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
-    }];
+- (IBAction)invertColorsImageAction:(id)sender{
+  InvertFilter * filter = [[InvertFilter alloc] initWithImage:self.imageView.image  ];
+  [self proccesedFilter:filter];
+}
+
+
+- (IBAction)blurAction:(id)sender {
+  BlurFilter * filter = [[BlurFilter alloc] initWithImage:self.imageView.image blurRadius:0.1 tintColor:[UIColor colorWithRed:0.1 green:0 blue:1.0 alpha:0.4] saturationDeltaFactor:0];
+  [self proccesedFilter:filter];
+}
+
+-(void)proccesedFilter:(BaseFilter*)filter{
+   __weak typeof(self) weakSelf = self;
+  [self.filterProcessor startFilter:filter complete:^(UIImage * image) {
+    [weakSelf updateProcessedList];
+    weakSelf.imageView.image = image;
+  } ];
+
 }
 
 - (IBAction)exifAction:(id)sender {
-   ImageExiffDataObject * object = [[ImageExiffDataObject alloc]init];
-   [object extractExifDataInObjectFromImage:self.imageView.image];
-   NSString * string = [NSString stringWithFormat:@" width %@ \n  height %@ \n depth %@ ",object.pixelWidth,object.pixelHeight,object.depth];
-
+  ImageExiffDataObject * object = [[ImageExiffDataObject alloc]init];
+  [object extractExifDataInObjectFromImage:self.imageView.image];
+  NSString * string = [NSString stringWithFormat:@" width %@ \n  height %@ \n depth %@ ",object.pixelWidth,object.pixelHeight,object.depth];
+  
   
   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"EXIF", @"")
                                                   message:string
@@ -191,29 +187,7 @@ const NSInteger kImageOperationActionSheet = 2;
   [alert show];
 }
 
-- (IBAction)blurAction:(id)sender {
-  UIImage * image = self.imageView.image;
-  
-  __weak typeof(self) weakSelf = self;
-  
-  [self.engine.operationsManager addImageOperationForImage:image operation:^id{
-    return [image applyBlurWithRadius:5 tintColor:[UIColor colorWithRed:0.1 green:0 blue:1.0 alpha:0.4] saturationDeltaFactor:0.1 maskImage:image];
-  } start:^{
-    [weakSelf updateProcessedList];
-  } complete:^(UIImage*image){
-    [weakSelf updateProcessedList];
-    weakSelf.imageView.image = image;
-  }
-          progress:^(ImageOperation * imageOperation){
-            
-            NSUInteger row =[weakSelf.imagesArray indexOfObject:imageOperation];
-            NSIndexPath* rowToReload = [NSIndexPath indexPathForRow:row inSection:0];
-            NSArray* rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
-            [weakSelf.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
-    }];
 
-  
-}
 
 #pragma mark - Action sheet delegate
 
@@ -272,7 +246,7 @@ const NSInteger kImageOperationActionSheet = 2;
     switch (buttonIndex) {
         case 1: {
           ImageOperation *imageOperation = [self.imagesArray objectAtIndex:_selectedImageIndex];
-            [self.engine.operationsManager deleteImageProcessedOperation:imageOperation complete: ^{
+            [self.filterProcessor.operationManager deleteImageProcessedOperation:imageOperation complete: ^{
                 [weakSelf updateProcessedList];
             } fail: ^{
             }];

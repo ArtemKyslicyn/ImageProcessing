@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProcessImageApp/ImageProcessingViewController.m"
-            timestampString = "491315671.019223"
+            timestampString = "491414925.154983"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
             landmarkName = "-imagePickerController:didFinishPickingImage:editingInfo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProcessImageApp/ImageProcessingViewController.m"
-            timestampString = "491315671.019223"
+            timestampString = "491414925.154983"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "288"
-            endingLineNumber = "288"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
             landmarkName = "-alertView:clickedButtonAtIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProcessImageApp/ImageProcessingViewController.m"
-            timestampString = "491315671.019223"
+            timestampString = "491414925.154983"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
             landmarkName = "-showImagePickerForSourceType:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProcessImageApp/ImageProcessingViewController.m"
-            timestampString = "491315671.019223"
+            timestampString = "491414411.730714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "-updateProcessedList"
             landmarkType = "5">
          </BreakpointContent>
@@ -440,11 +440,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProcessImageApp/ImageProcessingViewController.m"
-            timestampString = "491315671.019223"
+            timestampString = "491414411.730714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "-updateProcessedList"
             landmarkType = "5">
          </BreakpointContent>
@@ -527,22 +527,6 @@
                   offsetFromSymbolStart = "35">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProcessImageApp/ImageProcessingViewController.m"
-            timestampString = "491315671.019223"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
-            landmarkName = "-exifAction:"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -654,6 +638,38 @@
             startingLineNumber = "123"
             endingLineNumber = "123"
             landmarkName = "+saveProcessedImage:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProcessImageApp/BaseFilter.m"
+            timestampString = "491414411.730714"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "-operationImage"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProcessImageApp/BlurFilter.m"
+            timestampString = "491413314.634937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "-initWithImage:blurRadius:tintColor:saturationDeltaFactor:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Arcilite. All rights reserved.
 //
 
-CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
+CGFloat GDegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
 
 #import "UIImage+Effects.h"
 #import <float.h>
@@ -22,7 +22,7 @@ CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
     UIGraphicsBeginImageContext(size);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextTranslateCTM(ctx, newSide / 2, newSide / 2);
-    CGContextRotateCTM(ctx, DegreesToRadians(degrees));
+    CGContextRotateCTM(ctx, GDegreesToRadians(degrees));
     CGContextDrawImage(UIGraphicsGetCurrentContext(), CGRectMake(-self.size.width / 2, -self.size.height / 2, size.width, size.height), self.CGImage);
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

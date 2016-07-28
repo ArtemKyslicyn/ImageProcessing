@@ -41,26 +41,14 @@
   
   [imageOperation processedImage: ^(UIImage *image) {
     cell.processedImageView.image = image;
-    //[self.tableView reloadData];
     self.reloadBlock();
   }];
   
   return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  // Yes  i understend thats is not  is best solution
- // self.selectedImageIndex = indexPath.row;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
   self.selectedRow(indexPath.row);
-//  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Operation", @"")
-//                                                  message:NSLocalizedString(@"What are you want to do with result", @"")
-//                                                 delegate:self
-//                                        cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
-//                                        otherButtonTitles:NSLocalizedString(@"Delete", @""),
-//                        NSLocalizedString(@"Save To Library", @""),
-//                        NSLocalizedString(@"Process Again", @""), nil];
- // [alert show];
 }
 
 

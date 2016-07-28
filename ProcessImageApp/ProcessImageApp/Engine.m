@@ -29,7 +29,7 @@ static id _sharedInstance;
 - (id)init
 {
     if (self = [super init]) {
-        _operationsManager = [ImageOperationManager new];
+        
         _downloadManager  =  [ImageDownloader new];
     }
     return self;

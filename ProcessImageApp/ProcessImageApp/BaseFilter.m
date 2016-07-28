@@ -10,4 +10,19 @@
 
 @implementation BaseFilter
 
+
+- (id)initWithImage:(UIImage*)image{
+  self = [super init];
+  if (self) {
+    self.image = image;
+  }
+  return self;
+}
+
+-(UIImage*)operationImage{
+  return nil;
+}
+
 @end
+
+

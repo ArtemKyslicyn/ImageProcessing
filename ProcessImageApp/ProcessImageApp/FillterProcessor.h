@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+@class BaseFilter;
 
 @interface FillterProcessor : NSObject
 
+@property (nonatomic, strong) ImageOperationManager *operationManager;
+
+@property (nonatomic, copy) void (^start)();
+@property (nonatomic, copy) void (^progressBlock) (ImageOperation*progress);
+- (void)startFilter: (BaseFilter*)filter
+           complete:(void (^)(UIImage*))complete;
 @end

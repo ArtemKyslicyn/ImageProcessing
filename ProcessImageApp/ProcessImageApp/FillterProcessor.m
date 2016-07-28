@@ -7,7 +7,29 @@
 //
 
 #import "FillterProcessor.h"
+#import "BaseFilter.h"
+
 
 @implementation FillterProcessor
+- (id)init
+{
+  if (self = [super init]) {
+    _operationManager = [ImageOperationManager new];
+  
+  }
+  return self;
+}
+
+- (void)startFilter: (BaseFilter*)filter
+                         complete:(void (^)(UIImage*))complete{
+  
+
+  
+  [self.operationManager addImageOperationForImage:filter.image operation:^id{
+    return [filter operationImage];
+  } start:self.start complete:complete     progress:self.progressBlock];
+  
+  
+}
 
 @end

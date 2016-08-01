@@ -17,6 +17,7 @@
     CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef)jpeg, NULL);
    // CFDictionaryRef imageMetaData = CGImageSourceCopyPropertiesAtIndex(source,0,NULL);
     NSDictionary *myMetadata = (__bridge NSDictionary *) CGImageSourceCopyPropertiesAtIndex(source,0,NULL);
+  
    NSLog(@"meta %@",myMetadata);
     NSDictionary *exifDic = [myMetadata objectForKey:(NSString *)kCGImagePropertyExifDictionary];
     NSDictionary *tiffDic = [exifDic objectForKey:(NSString *)kCGImagePropertyTIFFDictionary];
@@ -39,8 +40,11 @@
   self.exifISOSpeed = [ExifISOSpeed stringValue];
   self.taken = [[exifDic objectForKey:(NSString *)kCGImagePropertyExifExposureTime] stringValue];
   self.depth = [[myMetadata objectForKey:@"Depth"] stringValue];
-   self.pixelWidth = [[myMetadata objectForKey:(NSString *)kCGImagePropertyPixelWidth] stringValue];
-   self.pixelHeight = [[myMetadata objectForKey:(NSString *)kCGImagePropertyPixelHeight] stringValue];
+  self.pixelWidth = [[myMetadata objectForKey:(NSString *)kCGImagePropertyPixelWidth] stringValue];
+  self.pixelHeight = [[myMetadata objectForKey:(NSString *)kCGImagePropertyPixelHeight] stringValue];
+  CFRelease((__bridge CFTypeRef)(myMetadata));
+  CFRelease(source);
+  
   
 }
 

@@ -147,7 +147,7 @@ CGFloat GDegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
     CGContextRelease(ctx);
     UIImage *finalImage = [UIImage imageWithCGImage:imageRef];
     CGImageRelease(imageRef);
-    
+    CGImageRelease(TheOtherHalf);
     return finalImage;
 }
 

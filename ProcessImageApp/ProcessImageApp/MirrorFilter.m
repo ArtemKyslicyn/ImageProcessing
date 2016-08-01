@@ -42,7 +42,7 @@
   CGContextRelease(ctx);
   UIImage *finalImage = [UIImage imageWithCGImage:imageRef];
   CGImageRelease(imageRef);
-  
+  CGImageRelease(TheOtherHalf);
   return finalImage;
 }
 

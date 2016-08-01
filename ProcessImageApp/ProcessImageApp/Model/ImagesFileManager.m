@@ -100,6 +100,8 @@ NSString * const kProcessedImagesFolder = @"/ProcessedImages";
   [metadataAsMutable setObject:EXIFDictionary forKey:(NSString *)kCGImagePropertyExifDictionary];
   [metadataAsMutable setObject:GPSDictionary forKey:(NSString *)kCGImagePropertyGPSDictionary];
   
+ 
+  
   CFStringRef UTI = CGImageSourceGetType(source);
   NSMutableData *dest_data = [NSMutableData data];
   
@@ -119,9 +121,17 @@ NSString * const kProcessedImagesFolder = @"/ProcessedImages";
   if(!success)
   {
     NSLog(@"-------- could not create data from image destination----------");
+  }else{
+   
   }
+  if (destination) {
+   CFRelease(destination);
+  }
+  
   //[dest_data writeToFile:filePath atomically:YES];
-
+ 
+  CFRelease(source);
+  
   return filePath;
 }
 

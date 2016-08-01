@@ -47,7 +47,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b0x-8h-ydc">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b0x-8h-ydc">
                                                     <rect key="frame" x="64" y="0.0" width="186" height="74"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </imageView>
@@ -56,6 +56,12 @@
                                                 </progressView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="b0x-8h-ydc" firstAttribute="top" secondItem="igm-Mx-MoN" secondAttribute="topMargin" constant="-8" id="3EA-Mn-a1s"/>
+                                                <constraint firstItem="b0x-8h-ydc" firstAttribute="leading" secondItem="igm-Mx-MoN" secondAttribute="leadingMargin" constant="56" id="PGQ-r4-fDS"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="b0x-8h-ydc" secondAttribute="bottom" constant="-7" id="XgE-hd-BlO"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="b0x-8h-ydc" secondAttribute="trailing" constant="62" id="xbt-Wz-YDo"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>

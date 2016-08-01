@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 @class BaseFilter;
+@class ImageOperationManager;
+@class ImageOperation;
 
 @interface FillterProcessor : NSObject
 

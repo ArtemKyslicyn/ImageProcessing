@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Arcilite. All rights reserved.
 //
 
-
+@class ImageOperation;
 typedef void(^ProgressBlock)(ImageOperation * operation);
 typedef id (^OperationBlock)(void);
 typedef void(^CompleteBlock)(UIImage * image, ImageOperation * operation);

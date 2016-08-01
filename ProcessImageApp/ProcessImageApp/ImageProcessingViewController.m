@@ -8,7 +8,7 @@
 
 #import "ImageProcessingViewController.h"
 #import "DownloadImageViewController.h"
-#import "Engine.h"
+#import "ImageOperationManager.h"
 #import "ImageOperation.h"
 #import "ImagesFileManager.h"
 #import "ProcessImageTableViewCell.h"

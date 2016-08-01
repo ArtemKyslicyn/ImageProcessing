@@ -8,7 +8,7 @@
 
 #import "FillterProcessor.h"
 #import "BaseFilter.h"
-
+#import "ImageOperationManager.h"
 
 @implementation FillterProcessor
 - (id)init

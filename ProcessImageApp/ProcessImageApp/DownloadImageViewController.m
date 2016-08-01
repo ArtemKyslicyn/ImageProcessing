@@ -7,7 +7,7 @@
 //
 
 #import "DownloadImageViewController.h"
-
+#import "ImageDownloader.h"
 @interface DownloadImageViewController ()
 @property (nonatomic, strong)  ImageDownloader *downloadManager;
 @end

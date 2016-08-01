@@ -21,6 +21,7 @@
 #import "InvertFilter.h"
 #import "NegatieFilter.h"
 #import "MirrorFilter.h"
+#import "ImagePickerProvider.h"
 
 const NSInteger kAddImageActionSheet = 1;
 const NSInteger kImageOperationActionSheet = 2;
@@ -34,6 +35,7 @@ const NSInteger kImageOperationActionSheet = 2;
 @property (nonatomic, strong) ImageOperationManager *operationManager;
 @property (nonatomic, strong) ImageProcessingTableDataSource * tableDatasource;
 @property (nonatomic, strong) FillterProcessor * filterProcessor;
+@property (nonatomic, strong) ImagePickerProvider * pickerProvider;
 
 @end
 
@@ -43,9 +45,9 @@ const NSInteger kImageOperationActionSheet = 2;
 - (id)initWithCoder:(NSCoder *)decoder{
   self = [super initWithCoder:decoder];
   if (self ){
-     //self.engine  = [[Engine alloc] init];
     [self initTableViewDataSource];
     [self initFilterProcessor];
+    [self initPickerProvider];
   }
   return  self;
 }
@@ -64,7 +66,6 @@ const NSInteger kImageOperationActionSheet = 2;
   __weak typeof(self) weakSelf = self;
   
   self.filterProcessor.progressBlock = ^(ImageOperation * imageOperation){
-    //[weakSelf updateProcessedList];
     NSUInteger row =[weakSelf.imagesArray indexOfObject:imageOperation];
     NSIndexPath* rowToReload = [NSIndexPath indexPathForRow:row inSection:0];
     NSArray* rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
@@ -103,6 +104,10 @@ const NSInteger kImageOperationActionSheet = 2;
   };
 }
 
+-(void)initPickerProvider{
+  self.pickerProvider =  [[ImagePickerProvider alloc] initWithViewController:self];
+}
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -123,7 +128,7 @@ const NSInteger kImageOperationActionSheet = 2;
 {
         // I don't like action sheet
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Add Image From", @"")
-                                                             delegate:self
+                                                             delegate:self.pickerProvider
                                                     cancelButtonTitle:nil
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:NSLocalizedString(@"Library", @""),
@@ -189,63 +194,16 @@ const NSInteger kImageOperationActionSheet = 2;
 
 
 
-#pragma mark - Action sheet delegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    switch (buttonIndex) {
-        case 0:
-            
-            [self showImagePickerForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-            
-            break;
-            
-        case 1:{
-            
-           [self performSegueWithIdentifier:@"modalDownload" sender:nil];
-        }
-            break;
-            
-        case 2:
-            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-                [self showImagePickerForSourceType:UIImagePickerControllerSourceTypeCamera];
-            }
-            
-            break;
-            
-        default:
-            break;
-    }
-}
-
-- (void)showImagePickerForSourceType:(UIImagePickerControllerSourceType)sourceType
-{
-    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-    imagePickerController.modalPresentationStyle   = UIModalPresentationCurrentContext;
-    imagePickerController.sourceType               = sourceType;
-    imagePickerController.delegate                 = self;
-    
-    [self presentViewController:imagePickerController animated:YES completion:nil];
-}
-
-#pragma mark - picker view delegates
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
-{
-    self.imageView.image = image;
-    
-    [self dismissViewControllerAnimated:YES completion:NULL];
-}
 
 #pragma mark - Alert view delegates
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-  
+   ImageOperation *imageOperation = [self.imagesArray objectAtIndex:_selectedImageIndex];
     __weak typeof(self) weakSelf = self;
     switch (buttonIndex) {
         case 1: {
-          ImageOperation *imageOperation = [self.imagesArray objectAtIndex:_selectedImageIndex];
+         
             [self.filterProcessor.operationManager deleteImageProcessedOperation:imageOperation complete: ^{
                 [weakSelf updateProcessedList];
             } fail: ^{
@@ -254,7 +212,7 @@ const NSInteger kImageOperationActionSheet = 2;
             break;
             
         case 2: {
-          ImageOperation *imageOperation = [self.imagesArray objectAtIndex:_selectedImageIndex];
+  
             [imageOperation processedImage: ^(UIImage *image) {
                 [weakSelf saveToLibarayImage:image];
             }];
@@ -263,9 +221,9 @@ const NSInteger kImageOperationActionSheet = 2;
             break;
             
         case 3: {
-          ImageOperation *imageOperation = [self.imagesArray objectAtIndex:_selectedImageIndex];
+        
             [imageOperation processedImage: ^(UIImage *image) {
-                [weakSelf procesAgainImage:image];
+                [weakSelf successChoosedImage:image];
             }];
         }
             
@@ -292,14 +250,12 @@ const NSInteger kImageOperationActionSheet = 2;
         }
                 failureBlock: ^(NSError *error) {
          NSLog(@"Error loading asset");
+                  
          }];
     }];
 }
 
-- (void)procesAgainImage:(UIImage *)image
-{
-    self.imageView.image = image;
-}
+
 
 #pragma mark Segue
 

@@ -34,7 +34,6 @@
 		6ABE7D5A19BCFF4600FEA502 /* DownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABE7D5919BCFF4600FEA502 /* DownloadOperation.m */; };
 		6AD97BE31D48606100211EB9 /* NSString+Date.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD97BE21D48606100211EB9 /* NSString+Date.m */; };
 		6AD97BE61D48B8ED00211EB9 /* ImageProcessingTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD97BE51D48B8ED00211EB9 /* ImageProcessingTableDataSource.m */; };
-		6AD97BE91D48C21500211EB9 /* AlertOperationDelegationObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD97BE81D48C21500211EB9 /* AlertOperationDelegationObject.m */; };
 		6AD97BEC1D48C30E00211EB9 /* BaseFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD97BEB1D48C30E00211EB9 /* BaseFilter.m */; };
 		6AD97BF01D48C47900211EB9 /* ImagePickerProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD97BEF1D48C47900211EB9 /* ImagePickerProvider.m */; };
 		6AD97BF81D48DB7700211EB9 /* FillterProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD97BF71D48DB7700211EB9 /* FillterProcessor.m */; };
@@ -103,8 +102,6 @@
 		6AD97BE21D48606100211EB9 /* NSString+Date.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Date.m"; sourceTree = "<group>"; };
 		6AD97BE41D48B8ED00211EB9 /* ImageProcessingTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcessingTableDataSource.h; sourceTree = "<group>"; };
 		6AD97BE51D48B8ED00211EB9 /* ImageProcessingTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageProcessingTableDataSource.m; sourceTree = "<group>"; };
-		6AD97BE71D48C21500211EB9 /* AlertOperationDelegationObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertOperationDelegationObject.h; sourceTree = "<group>"; };
-		6AD97BE81D48C21500211EB9 /* AlertOperationDelegationObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertOperationDelegationObject.m; sourceTree = "<group>"; };
 		6AD97BEA1D48C30E00211EB9 /* BaseFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseFilter.h; sourceTree = "<group>"; };
 		6AD97BEB1D48C30E00211EB9 /* BaseFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseFilter.m; sourceTree = "<group>"; };
 		6AD97BEE1D48C47900211EB9 /* ImagePickerProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerProvider.h; sourceTree = "<group>"; };
@@ -325,8 +322,6 @@
 			children = (
 				6AD97BE41D48B8ED00211EB9 /* ImageProcessingTableDataSource.h */,
 				6AD97BE51D48B8ED00211EB9 /* ImageProcessingTableDataSource.m */,
-				6AD97BE71D48C21500211EB9 /* AlertOperationDelegationObject.h */,
-				6AD97BE81D48C21500211EB9 /* AlertOperationDelegationObject.m */,
 				6AD97BEE1D48C47900211EB9 /* ImagePickerProvider.h */,
 				6AD97BEF1D48C47900211EB9 /* ImagePickerProvider.m */,
 			);
@@ -490,7 +485,6 @@
 				6AB9200A19BB0F2B00B8E044 /* ImagesFileManager.m in Sources */,
 				6AD97BF81D48DB7700211EB9 /* FillterProcessor.m in Sources */,
 				6ABE7D5219BB6B0200FEA502 /* ImageOperationManager.m in Sources */,
-				6AD97BE91D48C21500211EB9 /* AlertOperationDelegationObject.m in Sources */,
 				6A2D4B8119BA08F800C052E9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

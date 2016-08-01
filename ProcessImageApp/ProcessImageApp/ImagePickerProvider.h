@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface ImagePickerProvider : NSObject
-
+#import  "DownloadImageViewController.h"
+@interface ImagePickerProvider : NSObject<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
+-(id)initWithViewController:(UIViewController <DownloadImageViewControllerDelegate>*)viewController;
 @end

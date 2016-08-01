@@ -12,7 +12,7 @@
 
 - (id)initWithImage:(UIImage*)image blurRadius:(CGFloat)radius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor;
 
-@property (nonatomic,assign)  UIColor*  tintColor;
+@property (nonatomic,strong)  UIColor*  tintColor;
 @property (nonatomic,assign)  CGFloat saturationDeltaFactor;
 @property (nonatomic,assign)  CGFloat blurRadius;
 @end

@@ -22,7 +22,7 @@
 #import "NegatieFilter.h"
 #import "MirrorFilter.h"
 #import "ImagePickerProvider.h"
-
+#import "UIViewController+Messages.h"
 const NSInteger kAddImageActionSheet = 1;
 const NSInteger kImageOperationActionSheet = 2;
 
@@ -149,40 +149,66 @@ const NSInteger kImageOperationActionSheet = 2;
 }
 
 - (IBAction)rotateImageAction:(id)sender {
+  if  (!self.imageView.image) {
+    [self errorMessageWithTitle:NSLocalizedString(@"Error","") message: NSLocalizedString(@"Please choose image",@"")];
+  }else{
   RotateFilter * filter = [[RotateFilter alloc] initWithImage:self.imageView.image rotate: 90 ];
-  [self proccesedFilter:filter];
+    [self proccesedFilter:filter];
+  }
 }
 
 - (IBAction)mirorImageAction:(id)sender{
-  MirrorFilter * filter = [[MirrorFilter alloc] initWithImage:self.imageView.image ];
-  [self proccesedFilter:filter];
+  if  (!self.imageView.image) {
+    [self errorMessageWithTitle:NSLocalizedString(@"Error","") message: NSLocalizedString(@"Please choose image",@"")];
+  }else{
+    
+    MirrorFilter * filter = [[MirrorFilter alloc] initWithImage:self.imageView.image ];
+    [self proccesedFilter:filter];
+    
+  }
 }
 
 - (IBAction)invertColorsImageAction:(id)sender{
+  if  (!self.imageView.image) {
+    [self errorMessageWithTitle:NSLocalizedString(@"Error","") message: NSLocalizedString(@"Please choose image",@"")];
+  }else{
   InvertFilter * filter = [[InvertFilter alloc] initWithImage:self.imageView.image  ];
   [self proccesedFilter:filter];
+  }
 }
 
 
 - (IBAction)blurAction:(id)sender {
+  if  (!self.imageView.image) {
+    [self errorMessageWithTitle:NSLocalizedString(@"Error","") message: NSLocalizedString(@"Please choose image",@"")];
+  }else{
   BlurFilter * filter = [[BlurFilter alloc] initWithImage:self.imageView.image blurRadius:0.1 tintColor:[UIColor colorWithRed:0.1 green:0 blue:1.0 alpha:0.4] saturationDeltaFactor:0];
   [self proccesedFilter:filter];
+  }
 }
 
 -(void)proccesedFilter:(BaseFilter*)filter{
    __weak typeof(self) weakSelf = self;
+  if  (!self.imageView.image) {
+    [self errorMessageWithTitle:NSLocalizedString(@"Error","") message: NSLocalizedString(@"Please choose image",@"")];
+  }else{
   [self.filterProcessor startFilter:filter complete:^(UIImage * image) {
     [weakSelf updateProcessedList];
     weakSelf.imageView.image = image;
   } ];
+  }
 
 }
 
 - (IBAction)exifAction:(id)sender {
+  if  (!self.imageView.image) {
+    [self errorMessageWithTitle:NSLocalizedString(@"Error","") message: NSLocalizedString(@"Please choose image",@"")];
+  }else{
   ImageExiffDataObject * object = [[ImageExiffDataObject alloc]init];
   [object extractExifDataInObjectFromImage:self.imageView.image];
   NSString * string = [NSString stringWithFormat:@" width %@ \n  height %@ \n depth %@ ",object.pixelWidth,object.pixelHeight,object.depth];
   
+
   
   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"EXIF", @"")
                                                   message:string
@@ -190,6 +216,7 @@ const NSInteger kImageOperationActionSheet = 2;
                                         cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
                                         otherButtonTitles: nil];
   [alert show];
+  }
 }
 
 
@@ -250,6 +277,7 @@ const NSInteger kImageOperationActionSheet = 2;
         }
                 failureBlock: ^(NSError *error) {
          NSLog(@"Error loading asset");
+                  [self errorMessageWithTitle:@"Error" message: [error localizedDescription]];
                   
          }];
     }];
@@ -264,12 +292,12 @@ const NSInteger kImageOperationActionSheet = 2;
     if ([segue.identifier isEqualToString:@"modalDownload"]) {
         
         DownloadImageViewController *dowbloadViewController = (DownloadImageViewController *) segue.destinationViewController;
-     // dowbloadViewController.engine =  self.engine;
       self.definesPresentationContext = YES; //self is presenting view controller
         [dowbloadViewController setDelegate:self];
     }
     
 }
+
 
 
 

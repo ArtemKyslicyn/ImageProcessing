@@ -17,7 +17,7 @@ typedef void (^FailBlock)(NSError *error);
 @property (nonatomic, copy) ProgressBlock progressBlock;
 @property (nonatomic, copy) FailBlock failBlock;
 @property (nonatomic, copy) CompleteBlock completeBlock;
-
+@property (nonatomic,assign) NSUInteger totalSize;
 - (void)downloadByUrlString:(NSString *)urlString;
 - (void)start;
 

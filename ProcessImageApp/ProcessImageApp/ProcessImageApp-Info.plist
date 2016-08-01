@@ -20,6 +20,12 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+  <key>NSAppTransportSecurity</key>
+  <dict>
+    <!--Include to allow all connections (DANGER)-->
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+  </dict>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>

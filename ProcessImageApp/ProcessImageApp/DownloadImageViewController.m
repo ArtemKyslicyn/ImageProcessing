@@ -8,6 +8,9 @@
 
 #import "DownloadImageViewController.h"
 
+@interface DownloadImageViewController ()
+@property (nonatomic, strong)  ImageDownloader *downloadManager;
+@end
 @implementation DownloadImageViewController
 
 -(void)awakeFromNib{
@@ -22,6 +25,7 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  self.downloadManager  =  [ImageDownloader new];
   self.view.alpha = 0;
   self.modalPresentationStyle = UIModalPresentationOverFullScreen;
   self.providesPresentationContextTransitionStyle = YES;
@@ -36,25 +40,34 @@
     [self.delegate successChoosedImage:self.iamgeView.image];
 
 }
+- (IBAction)loadImageAction:(id)sender {
+  [self loadImage];
+}
 
 - (IBAction)cancelAction:(id)sender {
     [self dismissViewControllerAnimated:YES completion:Nil];
 }
 
+-(void)loadImage{
+  if (self.urlTextField.text.length>0) {
+    __weak typeof(self) weakSelf = self;
+    [self.downloadManager addImageOperationForUrlString:self.urlTextField.text fail:^(NSError *error) {
+      
+    } complete:^(UIImage *image) {
+      
+      weakSelf.iamgeView.image = image;
+      
+    } progress:^(float progress) {
+      weakSelf.progressView.progress = progress;
+      NSLog(@"progress loading  image %f ",progress);
+    }];
+  }
+
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    if (textField.text.length>0) {
-        __weak typeof(self) weakSelf = self;
-        [self.engine.downloadManager addImageOperationForUrlString:textField.text fail:^(NSError *error) {
-            
-        } complete:^(UIImage *image) {
-            
-            weakSelf.iamgeView.image = image;
-            
-        } progress:^(float progress) {
-            weakSelf.progressView.progress = progress;
-        }];
-    }
-    [textField resignFirstResponder];
+  [self loadImage];
+  [textField resignFirstResponder];
     return YES;
 }
 

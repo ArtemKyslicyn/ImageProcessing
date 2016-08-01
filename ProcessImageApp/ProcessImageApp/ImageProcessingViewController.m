@@ -43,7 +43,7 @@ const NSInteger kImageOperationActionSheet = 2;
 - (id)initWithCoder:(NSCoder *)decoder{
   self = [super initWithCoder:decoder];
   if (self ){
-     self.engine  = [[Engine alloc] init];
+     //self.engine  = [[Engine alloc] init];
     [self initTableViewDataSource];
     [self initFilterProcessor];
   }
@@ -308,7 +308,7 @@ const NSInteger kImageOperationActionSheet = 2;
     if ([segue.identifier isEqualToString:@"modalDownload"]) {
         
         DownloadImageViewController *dowbloadViewController = (DownloadImageViewController *) segue.destinationViewController;
-      dowbloadViewController.engine =  self.engine;
+     // dowbloadViewController.engine =  self.engine;
       self.definesPresentationContext = YES; //self is presenting view controller
         [dowbloadViewController setDelegate:self];
     }

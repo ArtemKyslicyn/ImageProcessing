@@ -39,11 +39,6 @@
   cell.progressView.progress = imageOperation.progress;
   cell.processedImageView.image = imageOperation.image;
   
-  [imageOperation processedImage: ^(UIImage *image) {
-    cell.processedImageView.image = image;
-    self.reloadBlock();
-  }];
-  
   return cell;
 }
 

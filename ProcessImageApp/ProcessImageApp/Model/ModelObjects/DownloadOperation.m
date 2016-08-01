@@ -40,12 +40,20 @@
     [_theConnection start];
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response{
     [_receivedData setLength:0];
+  long statusCode = [response statusCode];
+  if (statusCode == 200) {
+   self.totalSize = [response expectedContentLength];
+    
+  }
+
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
     [_receivedData appendData:data];
+  float progress = [data length] / self.totalSize;
+  self.progressBlock(progress);
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection{
@@ -70,5 +78,6 @@
     NSLog(@"Connection failed! Error - %@",
           [error localizedDescription]);
 }
+
 
 @end

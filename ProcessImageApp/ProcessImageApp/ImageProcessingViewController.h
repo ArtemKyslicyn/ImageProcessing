@@ -21,5 +21,5 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
-@property (nonatomic, strong) Engine * engine;
+//@property (nonatomic, strong) Engine * engine;
 @end

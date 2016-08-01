@@ -13,10 +13,14 @@
 
 @interface FillterProcessor : NSObject
 
-@property (nonatomic, strong) ImageOperationManager *operationManager;
+@property (nonatomic, strong, readonly) NSArray *imageOperationsArrray;
 
 @property (nonatomic, copy) void (^start)();
 @property (nonatomic, copy) void (^progressBlock) (ImageOperation*progress);
 - (void)startFilter: (BaseFilter*)filter
            complete:(void (^)(UIImage*))complete;
+
+- (void)deleteImageProcessedOperation:(ImageOperation *)imageOperation
+                             complete:(void (^)())complete
+                                 fail:(void (^)())fail;
 @end

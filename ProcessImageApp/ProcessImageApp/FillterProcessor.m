@@ -9,8 +9,19 @@
 #import "FillterProcessor.h"
 #import "BaseFilter.h"
 #import "ImageOperationManager.h"
+@interface FillterProcessor ()
+
+@property (nonatomic, strong) ImageOperationManager *operationManager;
+
+@end
+
 
 @implementation FillterProcessor
+
+-(NSArray*)imageOperationsArrray{
+  return self.operationManager.imageOperationsArrray;
+}
+
 - (id)init
 {
   if (self = [super init]) {
@@ -31,5 +42,13 @@
   
   
 }
+
+- (void)deleteImageProcessedOperation:(ImageOperation *)imageOperation
+                             complete:(void (^)())complete
+                                 fail:(void (^)())fail{
+  [self.operationManager deleteImageProcessedOperation:imageOperation complete:complete fail:fail];
+}
+  
+
 
 @end

@@ -117,8 +117,8 @@ const NSInteger kImageOperationActionSheet = 2;
 
 - (void)updateProcessedList
 {
-    self.imagesArray  = self.filterProcessor.operationManager.imageOperationsArrray;
-    self.tableDatasource.imagesArray = self.filterProcessor.operationManager.imageOperationsArrray;
+    self.imagesArray  = self.filterProcessor.imageOperationsArrray;
+    self.tableDatasource.imagesArray = self.filterProcessor.imageOperationsArrray;
     [self.tableView reloadData];
 }
 
@@ -231,7 +231,7 @@ const NSInteger kImageOperationActionSheet = 2;
     switch (buttonIndex) {
         case 1: {
          
-            [self.filterProcessor.operationManager deleteImageProcessedOperation:imageOperation complete: ^{
+            [self.filterProcessor deleteImageProcessedOperation:imageOperation complete: ^{
                 [weakSelf updateProcessedList];
             } fail: ^{
             }];
